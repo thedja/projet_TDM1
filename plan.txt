@@ -1,0 +1,11 @@
+Ideas:
+- affichage des chaines dans des onglet (Multi-pane layout)
+- affichage des horaires liste en verticale
+- navigation drawer pour changer de mode d'affichage (par chaine/heure, par thématique, par tranche horaire)
+- marquer comme intéressant => étoile
+- mode par thématique =>
+	* thématique des carrés
+	* au choix d'une thématique on file vers la liste des programmes et les listes correspondantes
+	ou
+	* thématique en onglet
+	* chaine en verticale (à la place de l'horaire)
