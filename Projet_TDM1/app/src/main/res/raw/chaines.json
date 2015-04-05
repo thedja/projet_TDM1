@@ -1,0 +1,9 @@
+[
+	{"label": "Sky Sport 1", "iconId": "ic_tv_black_24dp"},
+	{"label": "Sky Sport 2", "iconId": "ic_tv_black_24dp"},
+	{"label": "Sky Sport 3", "iconId": "ic_tv_black_24dp"},
+	{"label": "Sky Cinema 1", "iconId": "ic_tv_black_24dp"},
+	{"label": "Sky Cinema 2", "iconId": "ic_tv_black_24dp"},
+	{"label": "Sky Infos", "iconId": "ic_tv_black_24dp"},
+	{"label": "Sky Culture", "iconId": "ic_tv_black_24dp"}
+]
