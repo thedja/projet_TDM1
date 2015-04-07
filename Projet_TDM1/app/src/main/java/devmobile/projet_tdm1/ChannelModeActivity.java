@@ -16,6 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import devmobile.projet_tdm1.model.Chaine;
+import devmobile.projet_tdm1.model.JSONController;
+
 public class ChannelModeActivity extends FragmentActivity implements ActionBar.TabListener,
         NavBarFragment.OnNavBarItemSelectedListener {
 
@@ -37,7 +42,12 @@ public class ChannelModeActivity extends FragmentActivity implements ActionBar.T
         
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        myPagerAdapter = new ChannelPagerAdapter(getSupportFragmentManager() , getResources());
+        ArrayList<Chaine> chaines = JSONController.loadChaines(getResources(), null);
+        ArrayList<PageFragment> listPages = new ArrayList<PageFragment>();
+        for (Chaine chaine : chaines) {
+            listPages.add(PageFragment.newInstance(chaine.getProgrammes()));
+        }
+        myPagerAdapter = new ChannelPagerAdapter(getSupportFragmentManager() , getResources(), chaines, listPages);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);

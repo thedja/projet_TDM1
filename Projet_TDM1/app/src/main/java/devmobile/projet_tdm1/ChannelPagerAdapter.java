@@ -21,15 +21,13 @@ public class ChannelPagerAdapter extends FragmentPagerAdapter {
 	private Resources resources;
     private ArrayList<PageFragment> listPages = new ArrayList<PageFragment>();
 
-	public ChannelPagerAdapter(FragmentManager fm, Resources resources) {
+	public ChannelPagerAdapter(FragmentManager fm, Resources resources,
+                               ArrayList<Chaine> chaines, ArrayList<PageFragment> listPages) {
 		super(fm);
 
 		this.resources = resources;
-		chaines = JSONController.loadChaines(resources, TAG);
-        for(Chaine c : chaines){
-
-            listPages.add(PageFragment.newInstance(c.getProgrammes()));
-        }
+        this.chaines = chaines;
+        this.listPages = listPages;
 	}
 
     @Override
