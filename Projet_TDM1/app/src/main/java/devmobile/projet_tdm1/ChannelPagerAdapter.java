@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import devmobile.projet_tdm1.ChannelModeActivity.PlaceholderFragment;
 import devmobile.projet_tdm1.model.Chaine;
+import devmobile.projet_tdm1.model.JSONController;
+
 import android.content.res.Resources;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,21 +18,29 @@ import android.util.Log;
 public class ChannelPagerAdapter extends FragmentPagerAdapter {
 	private static final String TAG = "ChannelPagerAdapter";
 	private ArrayList<Chaine> chaines;
-	private Resources resources; 
+	private Resources resources;
+    private ArrayList<PageFragment> listPages = new ArrayList<PageFragment>();
 
 	public ChannelPagerAdapter(FragmentManager fm, Resources resources) {
 		super(fm);
 
 		this.resources = resources;
-		chaines = new ArrayList<Chaine>();
-		loadChaines();		
+		chaines = JSONController.loadChaines(resources, TAG);
+        for(Chaine c : chaines){
+
+            listPages.add(PageFragment.newInstance(c.getProgrammes()));
+        }
 	}
 
-	@Override
-	public Fragment getItem(int position) {
-		// TODO : return the desired fragment
-        return PlaceholderFragment.newInstance(position + 1);
-	}
+    @Override
+    public Fragment getItem(int i) {
+        return listPages.get(i);
+    }
+
+    public int getChaineIcon(int i){
+
+        return chaines.get(i).getIcon(resources);
+    }
 
 	@Override
 	public int getCount() {
@@ -43,33 +52,4 @@ public class ChannelPagerAdapter extends FragmentPagerAdapter {
 		return chaines.get(position).getLabel();		
 	}
 
-	private void loadChaines(){
-		try
-		{
-			InputStream is = resources.openRawResource(R.raw.chaines);
-			byte [] buffer = new byte[is.available()];
-			while (is.read(buffer) != -1);
-			String jsontext = new String(buffer);
-			JSONArray entries = new JSONArray(jsontext);
-
-			Log.i(TAG, "Number of channels read : "+entries.length());
-			for (int i=0;i<entries.length();i++)
-			{
-				JSONObject post = entries.getJSONObject(i);
-				chaines.add(new Chaine(post.getString("label"), post.getString("iconId"), null));
-			}
-		}
-		catch (IOException e){
-			Log.e(TAG, "IOException -> Can't load JSON file !\n"+e.getMessage());
-		}catch (JSONException e){
-			Log.e(TAG, "JSONException -> Can't load JSON file !\n"+e.getMessage());
-		}catch (Exception e){
-			Log.e(TAG, "Exception -> Can't load JSON file !\n"+e.getMessage());
-		}
-	}
-
-	public int getIcon(int position) {
-		//TODO : retun iconId
-		return resources.getIdentifier(chaines.get(position).getIconId(), "drawable", "devmobile.projet_tdm1");
-	}
 }

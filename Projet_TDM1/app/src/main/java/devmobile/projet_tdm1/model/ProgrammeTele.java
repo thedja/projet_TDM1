@@ -1,6 +1,9 @@
 package devmobile.projet_tdm1.model;
 
-public class ProgrammeTele {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class ProgrammeTele implements Parcelable{
 	
 	private Chaine chaine;
 	private String thematique;
@@ -10,9 +13,11 @@ public class ProgrammeTele {
 	private String descriptif;
 	private String videoId;
 	private String iconId;
-	
-	public ProgrammeTele(Chaine chaine, String thematique, int heureDebut,
-			int heureFin, String descriptif, String videoId, String iconId) {
+    private String titre;
+
+    public ProgrammeTele(Chaine chaine, String thematique, int heureDebut,
+			int heureFin, String descriptif, String videoId, String iconId, String titre) {
+
 		super();
 		this.chaine = chaine;
 		this.thematique = thematique;
@@ -21,6 +26,8 @@ public class ProgrammeTele {
 		this.descriptif = descriptif;
 		this.videoId = videoId;
 		this.iconId = iconId;
+        this.titre = titre;
+
 		
 		if(heureDebut>=6 && heureFin<13){
 			this.trancheHoraire = "Matinée";
@@ -30,8 +37,16 @@ public class ProgrammeTele {
 			this.trancheHoraire = "Soirée";
 		}
 	}
-	
-	public Chaine getChaine() {
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public Chaine getChaine() {
 		return chaine;
 	}
 	public void setChaine(Chaine chaine) {
@@ -84,4 +99,14 @@ public class ProgrammeTele {
 	public void setIconId(String iconId) {
 		this.iconId = iconId;
 	}
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
+    }
 }

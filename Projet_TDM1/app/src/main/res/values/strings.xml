@@ -9,4 +9,12 @@
     <string name="title_activity_channel_mode">ChannelModeActivity</string>
     <string name="hello_world">Hello world!</string>
 
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="item_chaine">Par chaine</string>
+    <string name="item_thematique">Par thematique</string>
+    <string name="item_tranche_horaire">Par tranche horaire</string>
+    <string name="title_activity_program_detail">ProgramDetailActivity</string>
+
 </resources>
