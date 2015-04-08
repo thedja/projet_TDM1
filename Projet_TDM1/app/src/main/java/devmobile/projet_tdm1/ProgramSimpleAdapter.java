@@ -1,12 +1,17 @@
 package devmobile.projet_tdm1;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import java.util.Collections;
 import java.util.List;
@@ -48,6 +53,7 @@ public class ProgramSimpleAdapter extends RecyclerView.Adapter<ProgramSimpleAdap
 
         ProgrammeTele current = data.get(i);
         holder.bind(current);
+        holder.updateSelection();
     }
 
     @Override
@@ -62,6 +68,7 @@ public class ProgramSimpleAdapter extends RecyclerView.Adapter<ProgramSimpleAdap
         TextView horaire;
         TextView titre;
         TextView descriptif;
+        ToggleButton favoris;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -71,9 +78,10 @@ public class ProgramSimpleAdapter extends RecyclerView.Adapter<ProgramSimpleAdap
             horaire = (TextView) itemView.findViewById(R.id.txtView_horaire);
             titre = (TextView) itemView.findViewById(R.id.txtView_title);
             descriptif = (TextView) itemView.findViewById(R.id.txtView_description);
+            favoris = (ToggleButton) itemView.findViewById(R.id.favoris);
         }
 
-        public void bind(ProgrammeTele current){
+        public void bind(final ProgrammeTele current){
 
             photo.setImageResource(current.getChaine().getIcon(context.getResources()));
             thematique.setText(current.getThematique());
@@ -81,6 +89,14 @@ public class ProgramSimpleAdapter extends RecyclerView.Adapter<ProgramSimpleAdap
             titre.setText(current.getTitre());
             if(descriptif != null)
                 descriptif.setText(current.getDescriptif());
+            favoris.setChecked(current.isFavoris());
+            favoris.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    current.setFavoris(favoris.isChecked());
+                    return false;
+                }
+            });
         }
 
         @Override
@@ -101,6 +117,7 @@ public class ProgramSimpleAdapter extends RecyclerView.Adapter<ProgramSimpleAdap
 
         private void setSelected(boolean selected){
             itemView.setSelected(selected);
+            Log.i("ProgramSimpleAdapter", "itemView.setSelected " + selected +" "+itemView);
             //TODO : change color of text, ..
         }
     }

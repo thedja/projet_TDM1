@@ -70,7 +70,7 @@ public class ProgramDetailView extends LinearLayout {
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle(program.getTitre());
         progressDialog.setMessage("Chargement ....");
-        progressDialog.setCancelable(false);
+        progressDialog.setCancelable(true);
         progressDialog.show();
 
         try{

@@ -3,6 +3,7 @@ package devmobile.projet_tdm1.model;
 import android.content.res.Resources;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 public class ProgrammeTele implements Parcelable{
 	
