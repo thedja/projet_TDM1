@@ -5,21 +5,31 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import devmobile.projet_tdm1.model.ProgrammeTele;
 
 
 public class ProgramDetailActivity extends Activity {
 
+    ProgrammeTele program;
+    public static String DATA_KEY = "data_key";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_program_detail);
+
+        program = (ProgrammeTele) getIntent().getExtras().getParcelable(DATA_KEY);
+        if(program == null)
+            throw new NullPointerException("program null !");
+        setContentView(new ProgramDetailView(this, program));
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -32,6 +42,9 @@ public class ProgramDetailActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }else if (id == R.id.action_notify) {
+            //TODO: create a notification
             return true;
         }
 

@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="devmobile.projet_tdm1.MainActivity">
+    tools:context="devmobile.projet_tdm1.CommunActivity">
 
     <item
         android:id="@+id/action_settings"
@@ -9,4 +9,9 @@
         app:showAsAction="never"
         android:title="@string/action_settings"/>
 
+    <item
+        android:id="@+id/action_notify"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="@string/action_notify"/>
 </menu>

@@ -1,5 +1,6 @@
 package devmobile.projet_tdm1.model;
 
+import android.content.res.Resources;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -14,9 +15,10 @@ public class ProgrammeTele implements Parcelable{
 	private String videoId;
 	private String iconId;
     private String titre;
+    private boolean favoris;
 
     public ProgrammeTele(Chaine chaine, String thematique, int heureDebut,
-			int heureFin, String descriptif, String videoId, String iconId, String titre) {
+			int heureFin, String descriptif, String videoId, String iconId, String titre, boolean favoris) {
 
 		super();
 		this.chaine = chaine;
@@ -27,6 +29,7 @@ public class ProgrammeTele implements Parcelable{
 		this.videoId = videoId;
 		this.iconId = iconId;
         this.titre = titre;
+        this.favoris = favoris;
 
 		
 		if(heureDebut>=6 && heureFin<13){
@@ -37,6 +40,28 @@ public class ProgrammeTele implements Parcelable{
 			this.trancheHoraire = "Soirée";
 		}
 	}
+
+    public void setFavoris(boolean favoris) {
+        this.favoris = favoris;
+    }
+
+    public boolean isFavoris() {
+
+        return favoris;
+    }
+
+    public ProgrammeTele(Parcel in) {
+        this.thematique = in.readString();
+        this.descriptif = in.readString();
+        this.videoId = in.readString();
+        this.iconId = in.readString();
+        this.titre = in.readString();
+        this.trancheHoraire = in.readString();
+        this.heureDebut = in.readInt();
+        this.heureFin = in.readInt();
+        //this.favoris = ?;
+        //this.chaine = (Chaine) in.readParcelable(Chaine.class.getClassLoader());
+    }
 
     public String getTitre() {
         return titre;
@@ -100,6 +125,18 @@ public class ProgrammeTele implements Parcelable{
 		this.iconId = iconId;
 	}
 
+    public int getIcon(Resources resources) {
+        return resources.getIdentifier(iconId, "drawable", "devmobile.projet_tdm1");
+    }
+
+    public int getVideo(Resources resources) {
+        return resources.getIdentifier(videoId, "drawable", "devmobile.projet_tdm1");
+    }
+
+    public String getHoraire() {
+        return heureDebut + "h - "+heureFin+"h";
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -107,6 +144,29 @@ public class ProgrammeTele implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
+        dest.writeString(this.thematique);
+        dest.writeString(this.descriptif);
+        dest.writeString(this.videoId);
+        dest.writeString(this.iconId);
+        dest.writeString(this.titre);
+        dest.writeString(this.trancheHoraire);
+        dest.writeInt(this.heureDebut);
+        dest.writeInt(this.heureFin);
+        dest.writeValue(this.favoris);
+        //TODO write chaine.id then get it from a global array or something like that
+        //dest.writeParcelable (this.chaine, Parcelable.CONTENTS_FILE_DESCRIPTOR);
     }
+
+    public static final Parcelable.Creator<ProgrammeTele> CREATOR = new Parcelable.Creator<ProgrammeTele>() {
+
+        public ProgrammeTele createFromParcel(Parcel in) {
+            return new ProgrammeTele(in);
+        }
+
+        public ProgrammeTele[] newArray(int size) {
+            return new ProgrammeTele[size];
+        }
+    };
+
+
 }

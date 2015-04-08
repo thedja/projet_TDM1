@@ -16,5 +16,6 @@
     <string name="item_thematique">Par thematique</string>
     <string name="item_tranche_horaire">Par tranche horaire</string>
     <string name="title_activity_program_detail">ProgramDetailActivity</string>
-
+    <string name="content_description_snapshot">snapshot</string>
+    <string name="action_notify">Notifier</string>
 </resources>

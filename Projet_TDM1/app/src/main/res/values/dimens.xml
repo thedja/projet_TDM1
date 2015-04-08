@@ -12,4 +12,7 @@
     <dimen name="nav_bar_iconPadding">6dp</dimen>
     <dimen name="nav_bar_itemHeight">64dp</dimen>
     <dimen name="list_margin">4dp</dimen>
+
+    <dimen name="header_size_text">20sp</dimen>
+    <dimen name="header_padding">16dp</dimen>
 </resources>

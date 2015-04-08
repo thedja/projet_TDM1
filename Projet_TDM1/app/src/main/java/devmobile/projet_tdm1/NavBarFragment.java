@@ -2,17 +2,13 @@ package devmobile.projet_tdm1;
 
 
 import android.app.Activity;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -20,14 +16,14 @@ import java.util.ArrayList;
 /**
  * A simple {@link android.support.v4.app.Fragment} subclass.
  */
-public class NavBarFragment extends Fragment implements ItemNavBarAdapter.ClickListener{
+public class NavBarFragment extends Fragment implements NavBarAdapter.ClickListener{
 
 
     private static final String DATA_KEY = "data_key";
     private OnNavBarItemSelectedListener listener;
     private RecyclerView recyclerView;
     private ArrayList<ItemNavBarInfo> data = new ArrayList<ItemNavBarInfo>() ;
-    private ItemNavBarAdapter adapter;
+    private NavBarAdapter adapter;
 
     public static NavBarFragment newInstance(){
 
@@ -72,7 +68,7 @@ public class NavBarFragment extends Fragment implements ItemNavBarAdapter.ClickL
                 container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.list_item);
-        adapter = new ItemNavBarAdapter(getActivity(), data);
+        adapter = new NavBarAdapter(getActivity(), data);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
