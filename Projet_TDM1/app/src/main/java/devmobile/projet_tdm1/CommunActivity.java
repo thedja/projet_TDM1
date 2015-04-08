@@ -3,6 +3,10 @@ package devmobile.projet_tdm1;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentTransaction;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -45,7 +49,19 @@ public abstract class CommunActivity extends FragmentActivity implements ActionB
             return true;
         }else if (id == R.id.action_notify) {
 
-            //TODO: create notification
+            String title = getResources().getString(R.string.notify_title);
+            String subject = getResources().getString(R.string.notify_subject);
+            String body = getResources().getString(R.string.notify_budy);
+
+            NotificationManager NM =(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+            Notification notify=new Notification(android.R.drawable.
+                stat_notify_more,title,System.currentTimeMillis());
+
+            PendingIntent pending=PendingIntent.getActivity(
+                        getApplicationContext(),0, new Intent(),0);
+            notify.setLatestEventInfo(getApplicationContext(),subject,body,pending);
+            NM.notify(0, notify);
+
             return true;
         }
         return super.onOptionsItemSelected(item);

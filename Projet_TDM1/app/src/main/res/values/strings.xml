@@ -18,4 +18,7 @@
     <string name="title_activity_program_detail">ProgramDetailActivity</string>
     <string name="content_description_snapshot">snapshot</string>
     <string name="action_notify">Notifier</string>
+    <string name="notify_title">Notification title</string>
+    <string name="notify_subject">Notification subject</string>
+    <string name="notify_budy">Notification budy</string>
 </resources>
