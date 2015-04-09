@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="header_color">#1dc</color>
+    <color name="header_color">#D32F2F</color>
+    <color name="drawer_left_pane">#fff</color>
+    <color name="header_text_color">#fff</color>
 </resources>

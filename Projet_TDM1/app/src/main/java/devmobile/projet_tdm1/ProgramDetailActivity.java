@@ -1,6 +1,8 @@
 package devmobile.projet_tdm1;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,6 +25,11 @@ public class ProgramDetailActivity extends Activity {
         if(program == null)
             throw new NullPointerException("program null !");
         setContentView(new ProgramDetailView(this, program));
+
+        // Set up the action bar.
+        final ActionBar actionBar = getActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -43,8 +50,9 @@ public class ProgramDetailActivity extends Activity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-        }else if (id == R.id.action_notify) {
-            //TODO: create a notification
+        }
+        if(id == android.R.id.home){
+            NavUtils.navigateUpFromSameTask(this);
             return true;
         }
 

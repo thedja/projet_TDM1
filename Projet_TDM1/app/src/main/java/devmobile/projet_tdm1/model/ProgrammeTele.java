@@ -6,7 +6,8 @@ import android.os.Parcelable;
 import android.util.Log;
 
 public class ProgrammeTele implements Parcelable{
-	
+    private static final String TAG = "MYTAG_ProgTele";
+
 	private Chaine chaine;
 	private String thematique;
 	private int heureDebut;
@@ -33,12 +34,12 @@ public class ProgrammeTele implements Parcelable{
         this.favoris = favoris;
 
 		
-		if(heureDebut>=6 && heureFin<13){
-			this.trancheHoraire = "Matinée";
-		}else if(heureDebut>=13 && heureFin<19){
-			this.trancheHoraire = "Aprés-midi";
-		}else if((heureDebut>=19 && heureFin<24) || (heureDebut>=0 && heureFin<6)){
-			this.trancheHoraire = "Soirée";
+		if(heureDebut>=6 && heureFin<=13){
+			this.trancheHoraire = "Matinee";
+		}else if(heureDebut>=13 && heureFin<=19){
+			this.trancheHoraire = "Apres-midi";
+		}else if((heureDebut>=19 && heureFin<=24) || (heureDebut>=0 && heureFin<=6)){
+			this.trancheHoraire = "Soiree";
 		}
 	}
 
@@ -60,8 +61,8 @@ public class ProgrammeTele implements Parcelable{
         this.trancheHoraire = in.readString();
         this.heureDebut = in.readInt();
         this.heureFin = in.readInt();
-        //this.favoris = ?;
-        //this.chaine = (Chaine) in.readParcelable(Chaine.class.getClassLoader());
+        this.chaine = (Chaine)  in.readParcelable(Chaine.class.getClassLoader());
+//        this.favoris = in.readBoolean();
     }
 
     public String getTitre() {
@@ -100,7 +101,7 @@ public class ProgrammeTele implements Parcelable{
 	}
 	
 	public String getTrancheHoraire() {
-		return trancheHoraire;
+        return trancheHoraire;
 	}
 	
 	public void setTrancheHoraire(String trancheHoraire) {
@@ -127,11 +128,13 @@ public class ProgrammeTele implements Parcelable{
 	}
 
     public int getIcon(Resources resources) {
-        return resources.getIdentifier(iconId, "drawable", "devmobile.projet_tdm1");
+        Log.i(TAG, "iconId : "+iconId);
+        return resources.getIdentifier(iconId, "raw", "devmobile.projet_tdm1");
     }
 
     public int getVideo(Resources resources) {
-        return resources.getIdentifier(videoId, "drawable", "devmobile.projet_tdm1");
+        Log.i(TAG, "videoId : "+iconId);
+        return resources.getIdentifier(videoId, "raw", "devmobile.projet_tdm1");
     }
 
     public String getHoraire() {
@@ -153,12 +156,11 @@ public class ProgrammeTele implements Parcelable{
         dest.writeString(this.trancheHoraire);
         dest.writeInt(this.heureDebut);
         dest.writeInt(this.heureFin);
+        dest.writeParcelable (this.chaine, flags);
         dest.writeValue(this.favoris);
-        //TODO write chaine.id then get it from a global array or something like that
-        //dest.writeParcelable (this.chaine, Parcelable.CONTENTS_FILE_DESCRIPTOR);
     }
 
-    public static final Parcelable.Creator<ProgrammeTele> CREATOR = new Parcelable.Creator<ProgrammeTele>() {
+    public static final Creator<ProgrammeTele> CREATOR = new Creator<ProgrammeTele>() {
 
         public ProgrammeTele createFromParcel(Parcel in) {
             return new ProgrammeTele(in);

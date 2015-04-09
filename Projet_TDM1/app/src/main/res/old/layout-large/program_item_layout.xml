@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/CardViewStyle">
+
+    <LinearLayout
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:divider="@drawable/abc_list_pressed_holo_dark"
+        android:padding="24dp">
+
+        <ImageView
+            android:layout_width="144dp"
+            android:layout_height="144dp"
+            android:id="@+id/program_snapshot"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginRight="24dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="10h40 - 11h30"
+                        android:id="@+id/txtView_horaire"
+                        android:layout_marginRight="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Sport"
+                        android:id="@+id/txtView_thematique"
+                        android:textColor="@color/primary_dark_material_light" />
+                </LinearLayout>
+
+                <ToggleButton
+                    android:id="@+id/favoris"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/favoris_selector"
+                    android:textOn=""
+                    android:textOff=""
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Match d&apos;UCL : CHE vs MU"
+                android:id="@+id/txtView_title"
+                android:layout_marginBottom="8dp"
+                android:width="0dip" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Finale de l&apos;UEFA Champions League de 2008, entre les deux clubs anglais de Londre, CHELSEA et de Manchester, MANCHESTER UNITED, qui se déroulera à Lisbone, Portugal. Première finale entre ces deux grands clubs."
+                android:id="@+id/txtView_description"
+                android:width="0dip" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

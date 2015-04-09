@@ -26,6 +26,7 @@ public class ProgramSimpleAdapter extends RecyclerView.Adapter<ProgramSimpleAdap
     private LayoutInflater inflater;
     private List<ProgrammeTele> data = Collections.emptyList();
     private ClickListener clickListener;
+    private FavorisListener favorisListener;
     private int mSelectedPosition = -1;
     Context context;
 
@@ -38,6 +39,10 @@ public class ProgramSimpleAdapter extends RecyclerView.Adapter<ProgramSimpleAdap
 
     public void setClickListener(ClickListener clickListener){
         this.clickListener = clickListener;
+    }
+
+    public void setFavorisListener(FavorisListener favorisListener){
+        this.favorisListener = favorisListener;
     }
 
     @Override
@@ -56,9 +61,16 @@ public class ProgramSimpleAdapter extends RecyclerView.Adapter<ProgramSimpleAdap
         holder.updateSelection();
     }
 
+
+
     @Override
     public int getItemCount() {
         return data.size();
+    }
+
+    public int getmSelectedPosition(){
+
+        return mSelectedPosition;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -83,18 +95,23 @@ public class ProgramSimpleAdapter extends RecyclerView.Adapter<ProgramSimpleAdap
 
         public void bind(final ProgrammeTele current){
 
-            photo.setImageResource(current.getChaine().getIcon(context.getResources()));
+            photo.setImageResource(current.getIcon(context.getResources()));
             thematique.setText(current.getThematique());
             horaire.setText(current.getHoraire());
             titre.setText(current.getTitre());
             if(descriptif != null)
                 descriptif.setText(current.getDescriptif());
+
             favoris.setChecked(current.isFavoris());
-            favoris.setOnTouchListener(new View.OnTouchListener() {
+            favoris.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public boolean onTouch(View v, MotionEvent event) {
+                public void onClick(View v) {
                     current.setFavoris(favoris.isChecked());
-                    return false;
+                    notifyDataSetChanged();
+                    if (favorisListener != null)
+                        favorisListener.favorisChanged(favoris.isChecked());
+                    if (favoris.isChecked())
+                        NotificationController.askForNotification(context, current);
                 }
             });
         }
@@ -117,12 +134,16 @@ public class ProgramSimpleAdapter extends RecyclerView.Adapter<ProgramSimpleAdap
 
         private void setSelected(boolean selected){
             itemView.setSelected(selected);
-            Log.i("ProgramSimpleAdapter", "itemView.setSelected " + selected +" "+itemView);
-            //TODO : change color of text, ..
+            ((CardView)itemView).setCardBackgroundColor(selected ? Color.rgb(221, 221, 221):
+                                                            Color.WHITE);
         }
     }
 
     public interface ClickListener{
         public void itemClicked(View view, int position);
+    }
+
+    public interface FavorisListener{
+        public void favorisChanged(boolean isChecked);
     }
 }

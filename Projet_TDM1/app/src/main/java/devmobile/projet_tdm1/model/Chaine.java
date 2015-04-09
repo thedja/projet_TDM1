@@ -6,54 +6,41 @@ import android.os.Parcelable;
 
 import java.util.ArrayList;
 
-public class Chaine implements Parcelable{
+public class Chaine implements Parcelable {
 	private String label;
 	private String iconId;
+    private long chaineId;
 
-	private ArrayList<ProgrammeTele> programmes = new ArrayList<ProgrammeTele>();
-	
-	
-	public Chaine(String label, String iconId, ArrayList<ProgrammeTele> programmes){
+	public Chaine(String label, String iconId, long chaineId){
 		this.label = label;
 		this.iconId = iconId;
-		//this.programmes = programmes;
-        this.programmes.add(new ProgrammeTele(this, "thematique", 12, 14, "descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif descriptif", "skyknights", iconId, "titre", false));
-	}
+        this.chaineId = chaineId;
+    }
 
     public Chaine(Parcel in) {
         this.iconId = in.readString();
         this.label  = in.readString();
-        in.readTypedList(programmes, ProgrammeTele.CREATOR);
+        this.chaineId = in.readLong();
     }
 
+    public long getChaineId() {
+        return chaineId;
+    }
+    public void setChainId(long chainId) {
+        this.chaineId = chainId;
+    }
 	public String getIconId() {
 		return iconId;
 	}
-
-
 	public void setIconId(String iconId) {
 		this.iconId = iconId;
 	}
-
 	public String getLabel() {
 		return label;
 	}
-
-
 	public void setLabel(String label) {
 		this.label = label;
 	}
-
-
-	public ArrayList<ProgrammeTele> getProgrammes() {
-		return programmes;
-	}
-
-
-	public void setProgrammes(ArrayList<ProgrammeTele> programmes) {
-		this.programmes = programmes;
-	}
-
     public int getIcon(Resources resources) {
         //TODO : retun iconId
         return resources.getIdentifier(iconId, "drawable", "devmobile.projet_tdm1");
@@ -68,10 +55,10 @@ public class Chaine implements Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.iconId);
         dest.writeString(this.label);
-        dest.writeTypedList(this.programmes);
+        dest.writeLong(this.chaineId);
     }
 
-    public static final Parcelable.Creator<Chaine> CREATOR = new Parcelable.Creator<Chaine>() {
+    public static final Creator<Chaine> CREATOR = new Creator<Chaine>() {
 
         public Chaine createFromParcel(Parcel in) {
             return new Chaine(in);

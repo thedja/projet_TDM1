@@ -2,6 +2,7 @@ package devmobile.projet_tdm1;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersAdapter;
 
@@ -23,6 +25,7 @@ public class ProgramStickyAdapter extends RecyclerArrayAdapter<ProgrammeTele, Pr
 
     private LayoutInflater inflater;
     private ClickListener clickListener;
+    private FavorisListener favorisListener;
     private int mSelectedPosition = -1;
     Context context;
 
@@ -31,6 +34,10 @@ public class ProgramStickyAdapter extends RecyclerArrayAdapter<ProgrammeTele, Pr
         this.context = context;
         inflater = LayoutInflater.from(context);
         addAll(data);
+    }
+
+    public void setFavorisListener(FavorisListener favorisListener){
+        this.favorisListener = favorisListener;
     }
 
     public void setClickListener(ClickListener clickListener){
@@ -59,8 +66,13 @@ public class ProgramStickyAdapter extends RecyclerArrayAdapter<ProgrammeTele, Pr
             return -1;
 
         } else {
-            return getItem(position).getChaine().getIcon(context.getResources());
+            return getItem(position).getChaine().getChaineId();
         }
+    }
+
+    public int getmSelectedPosition(){
+
+        return mSelectedPosition;
     }
 
     @Override
@@ -89,6 +101,7 @@ public class ProgramStickyAdapter extends RecyclerArrayAdapter<ProgrammeTele, Pr
         TextView horaire;
         TextView titre;
         TextView descriptif;
+        ToggleButton favoris;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -98,15 +111,29 @@ public class ProgramStickyAdapter extends RecyclerArrayAdapter<ProgrammeTele, Pr
             horaire = (TextView) itemView.findViewById(R.id.txtView_horaire);
             titre = (TextView) itemView.findViewById(R.id.txtView_title);
             descriptif = (TextView) itemView.findViewById(R.id.txtView_description);
+            favoris = (ToggleButton) itemView.findViewById(R.id.favoris);
         }
 
-        public void bind(ProgrammeTele current){
-            photo.setImageResource(current.getChaine().getIcon(context.getResources()));
+        public void bind(final ProgrammeTele current){
+            photo.setImageResource(current.getIcon(context.getResources()));
             thematique.setText(current.getThematique());
             horaire.setText(current.getHoraire());
             titre.setText(current.getTitre());
             if(descriptif != null)
                 descriptif.setText(current.getDescriptif());
+
+            favoris.setChecked(current.isFavoris());
+            favoris.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    current.setFavoris(favoris.isChecked());
+                    notifyDataSetChanged();
+                    if (favorisListener != null)
+                        favorisListener.favorisChanged(favoris.isChecked());
+                    if (favoris.isChecked())
+                        NotificationController.askForNotification(context, current);
+                }
+            });
         }
 
 
@@ -128,12 +155,16 @@ public class ProgramStickyAdapter extends RecyclerArrayAdapter<ProgrammeTele, Pr
 
         private void setSelected(boolean selected){
             itemView.setSelected(selected);
-            Log.i("ProgramStickyAdapter ", "setSelected "+ selected+" itemView "+itemView);
-            //TODO : change color of text, ..
+            ((CardView)itemView).setCardBackgroundColor(selected ? Color.rgb(221, 221, 221) :
+                    Color.WHITE);
         }
     }
 
     public interface ClickListener{
         public void itemClicked(View view, int position);
+    }
+
+    public interface FavorisListener{
+        public void favorisChanged(boolean isChecked);
     }
 }

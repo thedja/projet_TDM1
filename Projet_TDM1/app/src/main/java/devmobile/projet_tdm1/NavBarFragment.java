@@ -4,11 +4,14 @@ package devmobile.projet_tdm1;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toolbar;
 
 import java.util.ArrayList;
 
@@ -25,12 +28,24 @@ public class NavBarFragment extends Fragment implements NavBarAdapter.ClickListe
     private ArrayList<ItemNavBarInfo> data = new ArrayList<ItemNavBarInfo>() ;
     private NavBarAdapter adapter;
 
+    private ActionBarDrawerToggle drawerToggle;
+    private DrawerLayout drawerLayout;
+    private boolean userLearnedDrawer;
+    private boolean fromSavedInstanceState;
+
+    public void setUp(DrawerLayout drawerLayout, Toolbar toolbar){
+
+        this.drawerLayout= drawerLayout;
+        //drawerToggle = new ActionBarDrawerToggle(getActivity().dr)
+    }
+
     public static NavBarFragment newInstance(){
 
         ArrayList<ItemNavBarInfo> data = new ArrayList<ItemNavBarInfo>();
         data.add(new ItemNavBarInfo(R.drawable.chaine, R.string.item_chaine));
         data.add(new ItemNavBarInfo(R.drawable.thematique, R.string.item_thematique));
         data.add(new ItemNavBarInfo(R.drawable.tranche_horaire, R.string.item_tranche_horaire));
+        data.add(new ItemNavBarInfo(R.drawable.favoris, R.string.item_favoris));
 
         NavBarFragment fragment = new NavBarFragment();
         Bundle bundle = new Bundle();
@@ -47,6 +62,7 @@ public class NavBarFragment extends Fragment implements NavBarAdapter.ClickListe
         data.add(new ItemNavBarInfo(R.drawable.chaine, R.string.item_chaine));
         data.add(new ItemNavBarInfo(R.drawable.thematique, R.string.item_thematique));
         data.add(new ItemNavBarInfo(R.drawable.tranche_horaire, R.string.item_tranche_horaire));
+        data.add(new ItemNavBarInfo(R.drawable.favoris, R.string.item_favoris));
 
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList(DATA_KEY, data);
@@ -72,6 +88,7 @@ public class NavBarFragment extends Fragment implements NavBarAdapter.ClickListe
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
+        recyclerView.addItemDecoration(new DividerDecoration(getActivity()));
         if(recyclerView.getLayoutManager() == null) {
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         }
@@ -86,6 +103,7 @@ public class NavBarFragment extends Fragment implements NavBarAdapter.ClickListe
                 case 0: listener.OnChaineItemSelected(); break;
                 case 1: listener.OnThematiqueItemSelected(); break;
                 case 2: listener.OnTrancheHoraireItemSelected(); break;
+                case 3: listener.OnFavorisItemSelected(); break;
             }
         }
     }
@@ -94,6 +112,7 @@ public class NavBarFragment extends Fragment implements NavBarAdapter.ClickListe
         public void OnChaineItemSelected();
         public void OnThematiqueItemSelected();
         public void OnTrancheHoraireItemSelected();
+        public void OnFavorisItemSelected();
     }
 
     @Override

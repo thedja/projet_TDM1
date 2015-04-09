@@ -2,36 +2,52 @@ package devmobile.projet_tdm1;
 
 import android.app.ActionBar;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
+import android.view.View;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Set;
 
 import devmobile.projet_tdm1.model.Chaine;
 import devmobile.projet_tdm1.model.JSONController;
+import devmobile.projet_tdm1.model.ProgrammeTele;
 
 public class ChannelModeActivity extends CommunActivity{
+    private static final String TAG = "PRIVATE_TAG_ChannelMode";
 
 	private ChannelPagerAdapter myPagerAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_channel_mode);
+		setContentView(R.layout.activity_pager_mode);
 
         drawer_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-		// Set up the action bar.
+        // Set up the action bar.
         final ActionBar actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        drawerToggle = new ActionBarDrawerToggle(this, drawer_layout, R.drawable.toggle, R.string.open, R.string.close);
+
+        drawer_layout.setDrawerListener(drawerToggle);
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        ArrayList<Chaine> chaines = JSONController.loadChaines(getResources(), null);
+        HashMap<Chaine, ArrayList<ProgrammeTele>> programmesParChaines = ((MyApplication) getApplication()).getProgrammesParChaines();
+        ArrayList<Chaine> chaines = new ArrayList<>(programmesParChaines.keySet());
+
         ArrayList<SimplePageFragment> listPages = new ArrayList<SimplePageFragment>();
+
         for (Chaine chaine : chaines) {
-            listPages.add(SimplePageFragment.newInstance(chaine.getProgrammes()));
+            listPages.add(SimplePageFragment.newInstance(programmesParChaines.get(chaine)));
         }
+
         myPagerAdapter = new ChannelPagerAdapter(getSupportFragmentManager() , getResources(), chaines, listPages);
 
         // Set up the ViewPager with the sections adapter.
@@ -60,7 +76,7 @@ public class ChannelModeActivity extends CommunActivity{
                             .setText(myPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
-         
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 	}
 
     @Override

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Projet_TDM1</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_channel_mode">ChannelModeActivity</string>
+    <string name="hello_world">Hello world!</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="item_chaine">Par chaine</string>
+    <string name="item_thematique">Par thematique</string>
+    <string name="item_tranche_horaire">Par tranche horaire</string>
+    <string name="title_activity_program_detail">ProgramDetailActivity</string>
+    <string name="content_description_snapshot">snapshot</string>
+    <string name="action_notify">Notifier</string>
+    <string name="notify_title">Notification title</string>
+    <string name="notify_subject">Notification subject</string>
+    <string name="notify_budy">Notification budy</string>
+</resources>

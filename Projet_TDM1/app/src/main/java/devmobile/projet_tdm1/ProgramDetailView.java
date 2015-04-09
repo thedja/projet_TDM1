@@ -18,6 +18,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 import android.widget.VideoView;
 
 import devmobile.projet_tdm1.model.ProgrammeTele;
@@ -34,6 +35,8 @@ public class ProgramDetailView extends LinearLayout {
     private int position;
     private ImageView imgView_snapshot;
     private TextView txtView_title, txtView_thematique, txtView_description, txtView_horaire;
+    private ToggleButton favoris;
+    private FavorisListener favorisListener;
 
     public ProgramDetailView(Context context, ProgrammeTele programme) {
         super(context);
@@ -53,13 +56,25 @@ public class ProgramDetailView extends LinearLayout {
         init(context,attrs, defStyle, programme);
     }
 
-    private void init(Context context,AttributeSet attrs, int defStyle, ProgrammeTele program) {
+    private void init(final Context context,AttributeSet attrs, int defStyle, final ProgrammeTele program) {
 
         txtView_title.setText(program.getTitre());
         txtView_thematique.setText(program.getThematique());
         txtView_description.setText(program.getDescriptif());
         imgView_snapshot.setImageResource(program.getIcon(context.getResources()));
         txtView_horaire.setText(program.getHoraire());
+
+        favoris.setChecked(program.isFavoris());
+        favoris.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                program.setFavoris(favoris.isChecked());
+                if(favorisListener != null)
+                    favorisListener.favorisDetailChanged(favoris.isChecked());
+                if(favoris.isChecked())
+                    NotificationController.askForNotification(context, program);
+            }
+        });
 
         // set the media controller buttons
         if(mediaController == null){
@@ -112,8 +127,21 @@ public class ProgramDetailView extends LinearLayout {
         txtView_thematique = (TextView) findViewById(R.id.txtView_thematique);
         txtView_description = (TextView) findViewById(R.id.txtView_description);
         txtView_horaire = (TextView) findViewById(R.id.txtView_horaire);
-
+        favoris = (ToggleButton) findViewById(R.id.favoris_detail);
         videoView = (VideoView) findViewById(R.id.videoView);
 
+    }
+
+    public void setFavoris(boolean isFavoris) {
+
+        favoris.setChecked(isFavoris);
+    }
+
+    public void setFavorisListener(FavorisListener favorisListener){
+        this.favorisListener = favorisListener;
+    }
+
+    public interface FavorisListener{
+        public void favorisDetailChanged(boolean isChecked);
     }
 }

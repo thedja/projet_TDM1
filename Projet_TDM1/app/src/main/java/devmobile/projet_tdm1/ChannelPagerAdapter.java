@@ -10,10 +10,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 public class ChannelPagerAdapter extends FragmentPagerAdapter {
-	private static final String TAG = "ChannelPagerAdapter";
-	private ArrayList<Chaine> chaines;
-	private Resources resources;
-    private ArrayList<SimplePageFragment> listPages = new ArrayList<SimplePageFragment>();
+	private static final String TAG = "PRIVATE_TAG_ChannelPagerAdapter";
+    private ArrayList<SimplePageFragment> listPages;
+    private ArrayList<Chaine> chaines;
+    private Resources resources;
 
 	public ChannelPagerAdapter(FragmentManager fm, Resources resources,
                                ArrayList<Chaine> chaines, ArrayList<SimplePageFragment> listPages) {
@@ -43,5 +43,4 @@ public class ChannelPagerAdapter extends FragmentPagerAdapter {
 	public CharSequence getPageTitle(int position) {
 		return chaines.get(position).getLabel();		
 	}
-
 }

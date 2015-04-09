@@ -6,16 +6,17 @@
 
     <LinearLayout
         android:orientation="horizontal" android:layout_width="match_parent"
-        android:layout_height="192dp"
+        android:layout_height="@dimen/prgram_item_height"
         android:divider="@drawable/abc_list_pressed_holo_dark"
-        android:padding="24dp">
+        android:padding="@dimen/program_item_padding">
 
         <ImageView
-            android:layout_width="144dp"
-            android:layout_height="144dp"
+            android:layout_width="@dimen/program_item_snapshot_size"
+            android:layout_height="@dimen/program_item_snapshot_size"
             android:id="@+id/program_snapshot"
             android:src="@mipmap/ic_launcher"
-            android:layout_marginRight="24dp" />
+            android:layout_marginRight="@dimen/program_item_snapshot_marginRight"
+            android:adjustViewBounds="true" />
 
         <LinearLayout
             android:orientation="vertical"
@@ -39,7 +40,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="10h40 - 11h30"
                         android:id="@+id/txtView_horaire"
-                        android:layout_marginRight="16dp" />
+                        android:layout_marginRight="@dimen/program_item_horaire_marginRight" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -52,8 +53,8 @@
 
                 <ToggleButton
                     android:id="@+id/favoris"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="@dimen/program_item_favoris_size"
+                    android:layout_height="@dimen/program_item_favoris_size"
                     android:background="@drawable/favoris_selector"
                     android:textOn=""
                     android:textOff=""
@@ -68,7 +69,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Match d&apos;UCL : CHE vs MU"
                 android:id="@+id/txtView_title"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="@dimen/program_item_title_marginBottom"
                 android:width="0dip" />
 
             <TextView

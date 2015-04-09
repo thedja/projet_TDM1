@@ -4,6 +4,6 @@
     <item android:drawable="@drawable/favoris_selected"
         android:state_checked="true" />
     <!-- When not selected, use white-->
-    <item android:drawable="@drawable/favoris"
+    <item android:drawable="@drawable/favoris_unselected"
         android:state_checked="false"/>
 </selector>

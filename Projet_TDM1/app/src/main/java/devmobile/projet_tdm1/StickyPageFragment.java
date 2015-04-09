@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersTouchListener;
 
 import java.util.ArrayList;
 
@@ -17,11 +19,14 @@ import devmobile.projet_tdm1.model.ProgrammeTele;
 
 
 public class StickyPageFragment extends android.support.v4.app.Fragment implements
-        ProgramStickyAdapter.ClickListener{
+        ProgramStickyAdapter.ClickListener,
+        ProgramStickyAdapter.FavorisListener,
+        ProgramDetailView.FavorisListener{
 
     ArrayList<ProgrammeTele> data;
     private static String DATA_KEY = "data_key";
     ProgramStickyAdapter adapter;
+    ProgramDetailView detail;
 
     public StickyPageFragment(ArrayList<ProgrammeTele> data) {
 
@@ -50,6 +55,7 @@ public class StickyPageFragment extends android.support.v4.app.Fragment implemen
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list_program);
         adapter = new ProgramStickyAdapter(getActivity(), data);
         adapter.setClickListener(this);
+        adapter.setFavorisListener(this);
         recyclerView.setAdapter(adapter);
         if (recyclerView.getLayoutManager() == null)
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -58,8 +64,16 @@ public class StickyPageFragment extends android.support.v4.app.Fragment implemen
         StickyRecyclerHeadersDecoration headersDecor = new StickyRecyclerHeadersDecoration(adapter);
         recyclerView.addItemDecoration(headersDecor);
 
-        // Add decoration for dividers between list items
-        recyclerView.addItemDecoration(new DividerDecoration(getActivity()));
+        StickyRecyclerHeadersTouchListener touchListener =
+                new StickyRecyclerHeadersTouchListener(recyclerView, headersDecor);
+        touchListener.setOnHeaderClickListener(
+                new StickyRecyclerHeadersTouchListener.OnHeaderClickListener() {
+                    @Override
+                    public void onHeaderClick(View header, int position, long headerId) {
+                        // DO nothing to override itemClickListener
+                    }
+                });
+        recyclerView.addOnItemTouchListener(touchListener);
 
         return view;
     }
@@ -93,8 +107,9 @@ public class StickyPageFragment extends android.support.v4.app.Fragment implemen
             int index = parent.indexOfChild(view);
             parent.removeView(view);
 
-            View detail = new ProgramDetailView(getActivity(), programme);
+            detail = new ProgramDetailView(getActivity(), programme);
             detail.setId(R.id.detail_program);
+            detail.setFavorisListener(this);
             parent.addView(detail, index);
 
         } else {
@@ -104,6 +119,19 @@ public class StickyPageFragment extends android.support.v4.app.Fragment implemen
             detailIntent.putExtra(ProgramDetailActivity.DATA_KEY, programme);
             startActivity(detailIntent);
         }
+    }
+
+    @Override
+    public void favorisChanged(boolean isFavoris) {
+
+        if(detail != null)
+            detail.setFavoris(isFavoris);
+    }
+
+    @Override
+    public void favorisDetailChanged(boolean isChecked) {
+        Log.i("ProgramSimpleAdapter", "favorisChanged");
+        adapter.notifyAll();
     }
 
 }

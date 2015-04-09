@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="prgram_item_height">104dp</dimen>
+    <dimen name="program_item_padding">16dp</dimen>
+    <dimen name="program_item_snapshot_size">72dp</dimen>
+    <dimen name="program_item_snapshot_marginRight">16dp</dimen>
+    <dimen name="program_item_horaire_marginRight">16dp</dimen>
+    <dimen name="program_item_favoris_size">20dp</dimen>
+    <dimen name="program_item_title_marginBottom">0dp</dimen>
+
+    <!-- program detail -->
+    <dimen name="program_detail_padding">16dp</dimen>
+    <dimen name="program_detail_child_marginTop">16dp</dimen>
+    <dimen name="program_detail_thematique_marginTop">8dp</dimen>
+    <dimen name="program_detail_horaire_marginRight">30dp</dimen>
+    <dimen name="program_detail_favoris_size">20dp</dimen>
+    <dimen name="program_detail_description_marginTop">16dp</dimen>
+    <dimen name="program_detail_video_marginTop">16dp</dimen>
+</resources>

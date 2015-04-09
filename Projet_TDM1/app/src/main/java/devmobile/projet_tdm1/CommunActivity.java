@@ -1,35 +1,30 @@
 package devmobile.projet_tdm1;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.view.LayoutInflater;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-
-import devmobile.projet_tdm1.model.Chaine;
-import devmobile.projet_tdm1.model.JSONController;
 
 public abstract class CommunActivity extends FragmentActivity implements ActionBar.TabListener,
         NavBarFragment.OnNavBarItemSelectedListener {
 
     protected ViewPager mViewPager;
     protected DrawerLayout drawer_layout;
+    protected ActionBarDrawerToggle drawerToggle;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -47,22 +42,9 @@ public abstract class CommunActivity extends FragmentActivity implements ActionB
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
-        }else if (id == R.id.action_notify) {
-
-            String title = getResources().getString(R.string.notify_title);
-            String subject = getResources().getString(R.string.notify_subject);
-            String body = getResources().getString(R.string.notify_budy);
-
-            NotificationManager NM =(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-            Notification notify=new Notification(android.R.drawable.
-                stat_notify_more,title,System.currentTimeMillis());
-
-            PendingIntent pending=PendingIntent.getActivity(
-                        getApplicationContext(),0, new Intent(),0);
-            notify.setLatestEventInfo(getApplicationContext(),subject,body,pending);
-            NM.notify(0, notify);
-
-            return true;
+        }
+        if(drawerToggle.onOptionsItemSelected(item)){
+            drawer_layout.openDrawer(Gravity.START);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -95,16 +77,38 @@ public abstract class CommunActivity extends FragmentActivity implements ActionB
 
     @Override
     public void OnThematiqueItemSelected() {
-
         drawer_layout.closeDrawers();
-        //TODO : intent activity
+
+        Intent detailIntent = new Intent(this, ThematiqueModeActivity.class);
+        startActivity(detailIntent);
     }
 
     @Override
     public void OnTrancheHoraireItemSelected() {
-
         drawer_layout.closeDrawers();
-        //TODO : intent activity
+
+        Intent detailIntent = new Intent(this, TrancheHoraireModeActivity.class);
+        startActivity(detailIntent);
     }
 
+    @Override
+    public void OnFavorisItemSelected() {
+
+        drawer_layout.closeDrawers();
+
+        Intent detailIntent = new Intent(this, FavorisModeActivity.class);
+        startActivity(detailIntent);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        drawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
+    }
 }

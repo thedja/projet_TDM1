@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/program_detail_padding">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/imgView_snapshot"
+                android:src="@mipmap/ic_launcher"
+                android:contentDescription="@string/content_description_snapshot" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/program_detail_child_marginTop"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Titre"
+                        android:id="@+id/txtView_title" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Thematique"
+                        android:id="@+id/txtView_thematique"
+                        android:layout_marginTop="@dimen/program_detail_thematique_marginTop"
+                        android:textColor="@color/primary_dark_material_light" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="10h-11h"
+                        android:id="@+id/txtView_horaire"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/program_detail_horaire_marginRight"/>
+
+                    <ToggleButton
+                        android:id="@+id/favoris_detail"
+                        android:layout_width="@dimen/program_detail_favoris_size"
+                        android:layout_height="@dimen/program_detail_favoris_size"
+                        android:background="@drawable/favoris_selector"
+                        android:textOn=""
+                        android:textOff=""
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:layout_alignParentRight="true"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla"
+                android:id="@+id/txtView_description"
+                android:layout_marginTop="@dimen/program_detail_description_marginTop" />
+
+            <VideoView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:id="@+id/videoView"
+                android:layout_marginTop="@dimen/program_detail_video_marginTop" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
