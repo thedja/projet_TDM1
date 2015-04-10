@@ -6,7 +6,6 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-import android.view.View;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,14 +35,17 @@ public class TrancheHoraireModeActivity extends CommunActivity{
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         HashMap<String, ArrayList<ProgrammeTele>> programmesParTrancheHoraire = ((MyApplication) getApplication()).getProgrammesParTrancheHoraire();
+        Log.i(TAG, "+++ "+programmesParTrancheHoraire.keySet().size());
         ArrayList<String> tranchesHoraires = new ArrayList();
         tranchesHoraires.add("Matinee");
         tranchesHoraires.add("Apres-Midi");
         tranchesHoraires.add("Soiree");
+        tranchesHoraires.add("Nuit");
 
         ArrayList<StickyPageFragment> listPages = new ArrayList<StickyPageFragment>();
 
         for (String trancheHoraire : tranchesHoraires) {
+            Log.i(TAG, "tH : "+trancheHoraire+" -> "+programmesParTrancheHoraire.get(trancheHoraire).size());
             listPages.add(StickyPageFragment.newInstance(programmesParTrancheHoraire.get(trancheHoraire)));
         }
 

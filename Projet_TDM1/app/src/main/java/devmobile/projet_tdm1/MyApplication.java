@@ -1,6 +1,8 @@
 package devmobile.projet_tdm1;
 
 import android.app.Application;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import devmobile.projet_tdm1.model.ProgrammeTele;
  */
 public class MyApplication extends Application {
 
+    private static final String TAG = "MYTAG_MyApplication";
     private HashMap<Chaine, ArrayList<ProgrammeTele>> programmesParChaine;
     private HashMap<String, ArrayList<ProgrammeTele>> programmesParThematique;
     private HashMap<String, ArrayList<ProgrammeTele>> programmesParTrancheHoraire;
@@ -33,10 +36,11 @@ public class MyApplication extends Application {
 
     private void makeProgrammesParTrancheHoraire(){
         Set<Chaine> chaines = programmesParChaine.keySet();
-        ArrayList<ProgrammeTele> matinee = new ArrayList<>(), apresMidi = new ArrayList<>(), soiree = new ArrayList<>();
+        ArrayList<ProgrammeTele> matinee = new ArrayList<>(), apresMidi = new ArrayList<>(), soiree = new ArrayList<>(), nuit = new ArrayList<>();
 
         for(Chaine chaine : chaines){ // pour chaque chaine 'ch'
             for(ProgrammeTele program : programmesParChaine.get(chaine)){ // chaque programme de la chaine 'ch'
+                Log.i(TAG, "program: " + program.getTrancheHoraire() +" => "+ program.getHeureDebut()+"-"+program.getHeureFin());
                 switch (program.getTrancheHoraire()){
                     case "Matinee":
                         matinee.add(program);
@@ -47,6 +51,13 @@ public class MyApplication extends Application {
                     case "Soiree":
                         soiree.add(program);
                         break;
+                    case "Nuit":
+                        Log.i(TAG, "case Nuit : "+program.getHeureDebut()+" / "+program.getHeureFin());
+                        nuit.add(program);
+                        break;
+                    default:
+                        Log.i(TAG, "default: "+program.getTrancheHoraire()+" ==> "+program.getHeureDebut()+" / "+program.getHeureFin());
+                        break;
                 }
             }
         }
@@ -55,6 +66,7 @@ public class MyApplication extends Application {
         programmesParTrancheHoraire.put("Matinee", matinee);
         programmesParTrancheHoraire.put("Apres-Midi", apresMidi);
         programmesParTrancheHoraire.put("Soiree", soiree);
+        programmesParTrancheHoraire.put("Nuit", nuit);
     }
 
     private void makeProgrammesParThematique(){

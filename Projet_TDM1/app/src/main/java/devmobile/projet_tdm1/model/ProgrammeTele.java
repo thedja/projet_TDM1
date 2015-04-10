@@ -33,12 +33,14 @@ public class ProgrammeTele implements Parcelable{
         this.titre = titre;
         this.favoris = favoris;
 
-		
-		if(heureDebut>=6 && heureFin<=13){
+		if(heureDebut>=0 && heureDebut<6){
+            Log.i(TAG, "=============> yaaw nuit");
+            this.trancheHoraire = "Nuit";
+        }else if(heureDebut>=6 && heureDebut<13){
 			this.trancheHoraire = "Matinee";
-		}else if(heureDebut>=13 && heureFin<=19){
+		}else if(heureDebut>=13 && heureDebut<19){
 			this.trancheHoraire = "Apres-midi";
-		}else if((heureDebut>=19 && heureFin<=24) || (heureDebut>=0 && heureFin<=6)){
+		}else if((heureDebut>=19 && heureDebut<24)){
 			this.trancheHoraire = "Soiree";
 		}
 	}

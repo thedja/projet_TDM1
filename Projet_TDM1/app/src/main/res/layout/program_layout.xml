@@ -22,7 +22,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/imgView_snapshot"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@raw/no_image"
                     android:contentDescription="@string/content_description_snapshot"
                     android:adjustViewBounds="true" />
 

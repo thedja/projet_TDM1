@@ -1,59 +1,120 @@
 [
-	{"chaineId": "1", "label": "Sky Sport 1", "iconId": "ic_tv_black_24dp",
+	{"chaineId": "1", "label": "TF1", "iconId": "image_tf1",
 	    "programmes": [
-	        {"thematique": "SPORT", "heureDebut": 13, "heureFin": 14, "titre": "EPL 30eme journée",
-	            "descriptif": "Match d'ouverture de la 30ème journée de la Premiere League Anglaie, opposant CHELSEA à LIVERPOOL, sur la pelouse de Stamford Bridge.",
-	            "iconId": "EPL_30th_match_image", "videoId": ""},
-
-	        {"thematique": "EMMISSION", "heureDebut": 11, "heureFin": 12, "titre": "Studio Foot",
-                "descriptif": "Plateau télé pour commenter les matches de la 30ème journée de la Première League Anglaise, présenté par David Allen et Patrick Boomgartner. Invité du jour : Frank Lampard.",
-                "iconId": "studio_foot_image", "videoId": ""},
-
-	        {"thematique": "DOCUMENTAIRE", "heureDebut": 16, "heureFin": 18, "titre": "Bend it like Bekham ! - SKY SPORT 1",
-                "descriptif": "Retour  sur la réussite du l'icone du football anglais : David Beckham, tantot sur le plan footbalistique que sur le plan businessman.",
-                "iconId": "sky_sport1_doc_image", "videoId": ""},
-
-            {"thematique": "DOCUMENTAIRE", "heureDebut": 19, "heureFin": 21, "titre": "Bend it like Ronaldinho ! - SKY SPORT 1",
-                "descriptif": "Retour  sur la réussite du l'icone du football anglais : David Beckham, tantot sur le plan footbalistique que sur le plan businessman.",
-                "iconId": "sky_sport1_doc_image", "videoId": ""},
-
-            {"thematique": "DOCUMENTAIRE", "heureDebut": 20, "heureFin": 21, "titre": "Ronaldinho ! - SKY SPORT 1",
-                            "descriptif": "Retour  sur la réussite du l'icone du football anglais : David Beckham, tantot sur le plan footbalistique que sur le plan businessman.",
-                            "iconId": "sky_sport1_doc_image", "videoId": ""}
-	    ]
-	},
-	{"chaineId": "2", "label": "TF1", "iconId": "ic_tv_black_24dp",
-	    "programmes": [
-	        {"thematique": "CINEMA", "heureDebut": 21, "heureFin": 23, "titre": "Les chevaliers du ciel",
+	        {"thematique": "SERIE", "heureDebut": 0, "heureFin": 1, "titre": "Les experts - Quand docteur Langston...",
+                 "descriptif": "Une femme est découverte étranglée dans une ruelle. Langston l'identifie rapidement. Il s'agit d'une journaliste de talent qui enquêtait sur la même affaire que lui, quelques années auparavant. En fouillant son sac, les enquêteurs découvrent des clichés de toutes les victimes du mystérieux Dr Jekyll. L'affaire se complique lorsque le mari de la journaliste, un éditeur, prétend que Langston est un meurtrier !.",
+                "iconId": "image_tf1_les_experts_quand_docteur_lingston", "videoId": ""},
+				
+			{"thematique": "SERIE", "heureDebut": 1, "heureFin": 2, "titre": "Les experts - ... Rencontre Jekyll",
+				 "descriptif": "Après être entré en contact avec Langston, Nate Haskell est transféré de sa prison à Las Vegas pour être interrogé. Il prétend en effet détenir des informations précieuses concernant Dr Jekyll. Langston et Brass obtiennent de lui des indices qui mènent les enquêteurs dans un restaurant italien qui a fermé ses portes il y a plus de cinq ans. Sur place, ils découvrent sur les murs des photos des victimes de Jekyll.",
+				"iconId": "image_tf1_les_experts_rencontre_jekyll", "videoId": ""},
+			
+			{"thematique": "SERIE", "heureDebut": 2, "heureFin": 3, "titre": "Les experts - Shock Waves",
+				 "descriptif": "Après avoir été grièvement blessé par le psychopathe Nate Haskell, Langston est hospitalisé dans un état critique. Tandis que les membres de son équipe se rendent aux obsèques de Clark, trois bombes explosent au cours de la cérémonie. L'auteur de ces attentats semble être un déséquilibré animé par un esprit de vengeance contre la police. Les enquêteurs suivent une piste dans un centre communautaire.",
+				"iconId": "image_tf1_les_experts_shock_waves", "videoId": ""},
+			
+			{"thematique": "DOCUMENTAIRE", "heureDebut": 3, "heureFin": 4, "titre": "Reportage : Fous de volcans",
+				 "descriptif": "Pascale, Michèle et Pauline, une famille alsacienne, part à la découverte des volcans d'Indonésie, sur les Moluques. En Ethiopie, Pascal part à la chasse aux images à travers les canyons de sel du désert Ethiopien vers Dallol, un volcan dont le sommet culmine… en dessous du niveau de la mer.",
+				"iconId": "image_tf1_fous_de_volcans", "videoId": ""},
+			
+			{"thematique": "REPORTAGE", "heureDebut": 4, "heureFin": 6, "titre": "Grands reportages : Vies de flics",
+				 "descriptif": "Pendant un mois, le magazine a filmé le quotidien de trois commissariats de Montpellier, Béthune et Toulouse. L'occasion de suivre leurs équipes au cours d'auditions, perquisitions, urgences, flagrants délits, enquêtes...",
+				"iconId": "image_tf1_grands_reportages_vies_de_flics", "videoId": ""},
+			
+			{"thematique": "MUSIQUE", "heureDebut": 6, "heureFin": 7, "titre": "Tout pour la musique",
+				 "descriptif": "une heure de musique non stop.",
+				"iconId": "image_tf1_musique", "videoId": ""},
+			
+			{"thematique": "JEUNESSE", "heureDebut": 7, "heureFin": 8, "titre": "Tfou",
+				 "descriptif": "Au sommaire : Maya l'Abeille, Julius Jr, Diego, Les Minijusticiers, Paw Patrol, la Pat'Patrouille",
+				"iconId": "image_tf1_tfou", "videoId": ""},
+			
+			{"thematique": "TELESHOPPING", "heureDebut": 8, "heureFin": 11, "titre": "Teleshoppiing",
+				 "descriptif": "Selection des meilleurs produits à prix réduit.",
+				"iconId": "image_tf1_teleshopping", "videoId": ""},
+			
+			{"thematique": "SERIE", "heureDebut": 11, "heureFin": 12, "titre": "Petis secrets entre voisins",
+				 "descriptif": "La vie des voisins semble normale. Mais les apparences peuvent être trompeuses. Derrière les murs se cachent des histoires incroyables : conflits de quartier, mensonges, secrets ou jalousies.",
+				"iconId": "image_tf1_petits_secrets_entre_voisins", "videoId": ""},
+			
+			{"thematique": "JEU", "heureDebut": 12, "heureFin": 13, "titre": "Les douzes coups de midi",
+				 "descriptif": "Chaque jour, des candidats tentent de répondre à des questions ludiques et culturelles afin de gagner jusqu'à 30 000 euros. Mais attention, ils devront avoir décroché la mystérieuse étoile aux cadeaux avant que ne retentissent «Les Douze Coups de midi».",
+				"iconId": "image_tf1_les_douze_coups_de_midi", "videoId": ""},
+			
+			{"thematique": "JOURNAL", "heureDebut": 13, "heureFin": 14, "titre": "Le journal de 13H",
+				 "descriptif": "Journal de 13h présentent les principales actualités politiques, économiques, ....",
+				"iconId": "image_tf1_jt_13h", "videoId": ""},
+			
+			{"thematique": "TELEFILM", "heureDebut": 16, "heureFin": 18, "titre": "Quand la film est Rose",
+				 "descriptif": "Rose vient de rompre avec son petit ami, Hal Thorne, un écrivain aventurier qui ne se voit pas vivre dans un pavillon avec des enfants. Elle rencontre alors Nathan Lloyd dans un avion. Ving-inq ans plus tard, Rose et Nathan sont mariés, parents de deux enfants et travaillent pour le même journal. Nathan avoue alors à Rose qu'il a rencontré quelqu'un. Cette femme n'est autre que Mindy, son assistante.",
+				"iconId": "image_tf1_quand_la_vie_est_rose", "videoId": ""},
+			
+			{"thematique": "JEU", "heureDebut": 18, "heureFin": 19, "titre": "Quand la vie est Rose",
+				 "descriptif": "Durant une semaine, quatre duos, propriétaires de maisons d'hôtes, se reçoivent à tour de rôle. Chacun est jugé et noté sur plusieurs critères : la convivialité, le cadre de la maison, la qualité des services proposés, la propreté de la chambre et les équipements, et le rapport qualité.prix. Chaque vendredi, le duo qui décroche le titre de meilleure maison d'hôtes de la semaine se voit remettre la somme de 3000 euros.",
+				"iconId": "image_tf1_bienvenue_chez_nous", "videoId": ""},
+			
+			{"thematique": "JEU", "heureDebut": 19, "heureFin": 20, "titre": "Quand la film est Rose",
+				 "descriptif": "Chaque jour, plusieurs candidats rejoignent Vincent Lagaf' au centre du plateau pour se frotter aux épreuves du «Juste Prix». Parmi la quarantaine de défis figurent les incontournables «Fakir», «Min-olf» et «Coup de poing». Lors du troisième cadeau de sélection, ce ne sont pas un, mais deux candidats qui retrouvent Vincent Lagaf' pour une épreuve en duel. A l'issue de chaque émission, les trois candidats finalistes tournent la célèbre roue. Un seul d'entre eux pourra, ensuite, tenter de remporter la fameuse vitrine.",
+				"iconId": "image_tf1_le_juste_prix", "videoId": ""},
+			
+			{"thematique": "JOURNAL", "heureDebut": 20, "heureFin": 21, "titre": "Le journal de 20H",
+				 "descriptif": "Journal de 20h présentent les principales actualités politiques, économiques, ....",
+				"iconId": "image_tf1_jt_20h", "videoId": ""},
+			
+			{"thematique": "CINEMA", "heureDebut": 21, "heureFin": 23, "titre": "Les chevaliers du ciel",
                  "descriptif": "Les Chevaliers du ciel est un film d'action français réalisé par Gérard Pirès et sorti en 2005. Il est très librement basé sur les aventures de Tanguy et Laverdure.",
-                "iconId": "skynights_image", "videoId": "skyknights_video"},
-
-            {"thematique": "EMMISSION", "heureDebut": 12, "heureFin": 13, "titre": "Program 1 - TF1",
-                 "descriptif": "Plateau télé pour commenter les matches de la 30ème journée de la Première League Anglaise, présenté par David Allen et Patrick Boomgartner. Invité du jour : Frank Lampard.",
-                 "iconId": "studio_foot_image", "videoId": ""},
-
-            {"thematique": "DOCUMENTAIRE", "heureDebut": 16, "heureFin": 18, "titre": "Bend it like ! - TF1",
-                "descriptif": "Retour  sur la réussite du l'icone du football anglais : David Beckham, tantot sur le plan footbalistique que sur le plan businessman.",
-                "iconId": "sky_sport1_doc_image", "videoId": ""}
+                "iconId": "image_tf1_skynights", "videoId": "video_tf1_skyknights"},
+			
+			{"thematique": "DIVERTISSEMENT", "heureDebut": 23, "heureFin": 24, "titre": "Vendredi tout est permis avec Arthur",
+                 "descriptif": "Pour lancer le wee-nd, l'animateur convie Bruno Guillon, Vincent Moscato, Antonia de Rendinger, Andy Cocq, Willy Rovelli, Elodie Gossuin et Arnaud Tsamère à une soirée où ils pourront laisser libre cours à leur créativité. Dans la décontraction et la bonne humeur, il leur lance des défis d'improvisation où l'autodérision est de mise. Les invités doivent par exemple jouer une saynète sur un décor penché à 22,5 degrés et ainsi défier les lois de la gravité au risque de chuter régulièrement. Ils se lancent aussi dans l'improvisation d'une chorégraphie sur Let's dance, miment l'interprétation d'un groupe de rock sans disposer d'instruments, évoluent dans le noir dans In the dark, ou font deviner des objets à leurs comparses avec le Phot-ime. A chaque fois qu'il le peut, Arthur pimente l'épreuve en rajoutant des contraintes totalement improbables.",
+                "iconId": "image_tf1_vendredi_tout_est_permis_avec_arthur", "videoId": "video_tf1_skyknights"}
 	    ]
 	},
-	{"chaineId": "3", "label": "Canal Algérie", "iconId": "ic_tv_black_24dp",
+	{"chaineId": "2", "label": "SKY SPORT 1", "iconId": "image_sky_sport_1",
 	    "programmes": [
-            {"thematique": "EMMISSION", "heureDebut": 12, "heureFin": 13, "titre": "Program 3 - Canal Algérie",
-                   "descriptif": "Plateau télé pour commenter les matches de la 30ème journée de la Première League Anglaise, présenté par David Allen et Patrick Boomgartner. Invité du jour : Frank Lampard.",
-                   "iconId": "doc_image", "videoId": ""},
-
-	          {"thematique": "DOCUMENTAIRE", "heureDebut": 16, "heureFin": 18, "titre": "Bend it like - Canal Algérie",
-                    "descriptif": "Retour  sur la réussite du l'icone du football anglais : David Beckham, tantot sur le plan footbalistique que sur le plan businessman.",
-                    "iconId": "sky_sport1_doc_image", "videoId": ""},
-
-            {"thematique": "EMMISSION", "heureDebut": 14, "heureFin": 15, "titre": "Program 1 - Canal Algérie",
-                "descriptif": "Plateau télé pour commenter les matches de la 30ème journée de la Première League Anglaise, présenté par David Allen et Patrick Boomgartner. Invité du jour : Frank Lampard.",
-                "iconId": "studio_foot_image", "videoId": ""},
-
-            {"thematique": "EMMISSION", "heureDebut": 13, "heureFin": 14, "titre": "Program 2 - Canal Algérie",
-                  "descriptif": "Plateau télé pour commenter les matches de la 30ème journée de la Première League Anglaise, présenté par David Allen et Patrick Boomgartner. Invité du jour : Frank Lampard.",
-                  "iconId": "studio_foot_image", "videoId": ""}
-	    ]
+	        {"thematique": "SPORT, FOOTBALL", "heureDebut": 0, "heureFin": 1, "titre": "Barclays Premier League World",
+                 "descriptif": "Arsenal goalkeeper David Ospina talks about the title race, while Spurs boss Mauricio Pochettino assesses his team's prospects and some of its emerging stars.",
+                "iconId": "image_sky_sport_1_barclay_premier_league_world", "videoId": ""},
+				
+			{"thematique": "SPORT, DARTS", "heureDebut": 1, "heureFin": 4, "titre": "Premier League Darts",
+                 "descriptif": "Round 10 of the 2015 Betway Premier League Darts from the Motorpoint Arena in Sheffield. Peter Wright and Kim Huybrechts were eliminated from the competition last week.",
+                "iconId": "image_sky_sports_1_premier_league_darts", "videoId": ""},
+				
+			{"thematique": "SPORT, DARTS", "heureDebut": 5, "heureFin": 7, "titre": "Premier League Darts",
+                 "descriptif": "A celebration of some of the finest darts players of all time. Here the focus is on tw-ime world champion Jocky Wilson.",
+                "iconId": "image_sky_sports_1_legends_of_darts", "videoId": ""},
+				
+			{"thematique": "SPORT, BOXING", "heureDebut": 7, "heureFin": 9, "titre": "Ring side",
+                 "descriptif": "This week, Adam and Johnny are in Leeds ahead of Josh Warrington's bout with Dennis Tubieron. Plus, Ed Robinson is joined in the studio by Stephen Smith, Matthew Macklin and Alex Arthur.",
+                "iconId": "image_sky_sports_1_ring_side", "videoId": ""},
+				
+			{"thematique": "SPORT, WRESTLING", "heureDebut": 9, "heureFin": 11, "titre": "WEE Main Event",
+                 "descriptif": "Catch up with all the action on the latest edition of Main Event, featuring all your favourite WWE wrestlers. Matches include Mark Henry v Heath Slater and Jack Swagger v The Miz.",
+                "iconId": "image_sky_sports_1_wwe_main_event", "videoId": ""},
+				
+			{"thematique": "SPORT, F1", "heureDebut": 11, "heureFin": 13, "titre": "The F1 Show",
+                 "descriptif": "A look at all the latest stories and talking points in Formula 1. Includes regular features and bi-ame interviews with F1 stars both past and present.",
+                "iconId": "image_sky_sports_1_the_f1_show", "videoId": ""},
+				
+			{"thematique": "SPORT, FOOTBALL", "heureDebut": 13, "heureFin": 17, "titre": "Premier League Years 2012/2013",
+                 "descriptif": "A look back at the 2012/13 Barclays Premier League season. Could Sir Alex Ferguson's Manchester United regain the title from bi-pending rivals Manchester City?",
+                "iconId": "image_sky_sports_1_premier_league_years_2012_2013", "videoId": "video_sky_sports_1_premier_league_years_2012_2013"},
+				
+			{"thematique": "SPORT, FOOTBALL", "heureDebut": 17, "heureFin": 19, "titre": "Premier League Years 2013/2014",
+                 "descriptif": "A look back at the story of the 2013/14 Barclays Premier League. Manuel Pellegrini's men showed the measure of champions to see off the surprise challenge of Liverpool.",
+                "iconId": "image_sky_sports_1_premier_league_years_2013_2014", "videoId": ""},
+				
+			{"thematique": "SPORT, FOOTBALL", "heureDebut": 19, "heureFin": 21, "titre": "The Fantasy Football Club",
+                 "descriptif": "This week, former QPR manager Harry Redknapp is in the studio. Plus, Leicester City boss Nigel Pearson picks his #one2eleven and Sheffield Wednesday take on the Tw-ooted Corner Challenge.",
+                "iconId": "image_sky_sports_1_the_fantasy_football_club", "videoId": ""},
+				
+			{"thematique": "SPORT, FOOTBALL", "heureDebut": 21, "heureFin": 23, "titre": "LIVE: Brighton vs Bournemouth",
+                 "descriptif": "righton face Bournemouth at the American Express Community Stadium in the Sky Bet Championship. The Cherries can extend their lead at the top of the table to four points with a win.",
+                "iconId": "image_sky_sports_1_live_brighton_vs_bournemouth", "videoId": ""},
+				
+			{"thematique": "SPORT, FOOTBALL", "heureDebut": 23, "heureFin": 24, "titre": "Football Gold",
+                 "descriptif": "A chance to relive some classic football matches. Here is the Scottish Premiership clash between Celtic and Rangers at Celtic Park from the ",
+                "iconId": "image_sky_sports_1_football_gold", "videoId": ""}
+		]
 	}
 ]

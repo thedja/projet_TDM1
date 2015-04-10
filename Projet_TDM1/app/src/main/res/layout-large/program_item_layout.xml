@@ -14,7 +14,7 @@
             android:layout_width="@dimen/program_item_snapshot_size"
             android:layout_height="@dimen/program_item_snapshot_size"
             android:id="@+id/program_snapshot"
-            android:src="@mipmap/ic_launcher"
+            android:src="@raw/no_image"
             android:layout_marginRight="@dimen/program_item_snapshot_marginRight"
             android:adjustViewBounds="true" />
 

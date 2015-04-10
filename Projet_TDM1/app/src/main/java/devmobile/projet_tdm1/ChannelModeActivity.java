@@ -72,7 +72,7 @@ public class ChannelModeActivity extends CommunActivity{
             // this tab is selected.
             actionBar.addTab(
                     actionBar.newTab()
-                    		.setIcon(myPagerAdapter.getChaineIcon(i))
+//                    		.setIcon(myPagerAdapter.getChaineIcon(i))
                             .setText(myPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
