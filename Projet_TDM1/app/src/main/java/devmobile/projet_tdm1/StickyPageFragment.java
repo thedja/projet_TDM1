@@ -28,6 +28,8 @@ public class StickyPageFragment extends android.support.v4.app.Fragment implemen
     private static String DATA_KEY = "data_key";
     ProgramStickyAdapter adapter;
     ProgramDetailView detail;
+    int detail_index = -1;
+    Intent detailIntent;
 
     public StickyPageFragment(ArrayList<ProgrammeTele> data) {
 
@@ -96,6 +98,7 @@ public class StickyPageFragment extends android.support.v4.app.Fragment implemen
     @Override
     public void itemClicked(View view, int position) {
 
+        detail_index = position;
         showProgramDetail(data.get(position));
 
     }
@@ -116,11 +119,38 @@ public class StickyPageFragment extends android.support.v4.app.Fragment implemen
         } else {
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
-            Intent detailIntent = new Intent(getActivity(), ProgramDetailActivity.class);
+            detailIntent = new Intent(getActivity(), ProgramDetailActivity.class);
             detailIntent.putExtra(ProgramDetailActivity.DATA_KEY, programme);
-            startActivity(detailIntent);
+            detailIntent.putExtra(ProgramDetailActivity.DATA_KEY, programme);
+            getActivity().startActivityForResult(detailIntent, ProgramDetailActivity.DATA_REQUEST);
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(detailIntent != null) {
+            ProgrammeTele programmeTele = (ProgrammeTele) ProgramDetailActivity.getMyIntent().getExtras().get(ProgramDetailActivity.DATA_RESULT);
+            data.get(detail_index).copy(programmeTele);
+            adapter.selectItem(-1);
+            detailIntent = null;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
+        super.onActivityResult(requestCode, resultCode, resultData);
+        Log.i(TAG, "onActivityResult ");
+        if(requestCode == ProgramDetailActivity.DATA_REQUEST){
+            if(resultCode == ProgramDetailActivity.RESULT_OK) {
+                Bundle bundle = resultData.getExtras();
+                ProgrammeTele programmeTele = bundle.getParcelable(ProgramDetailActivity.DATA_KEY);
+                data.get(detail_index).copy(programmeTele);
+                adapter.notifyItemChanged(detail_index);
+            }
+        }
+    }
+
 
     @Override
     public void favorisChanged(boolean isFavoris) {
@@ -134,8 +164,6 @@ public class StickyPageFragment extends android.support.v4.app.Fragment implemen
         Log.i("ProgramSimpleAdapter", "favorisChanged");
         adapter.notifyAll();
     }
-
-
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {

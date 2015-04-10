@@ -2,9 +2,11 @@ package devmobile.projet_tdm1;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,15 +16,23 @@ import devmobile.projet_tdm1.model.ProgrammeTele;
 
 public class ProgramDetailActivity extends Activity {
 
+    public static final int DATA_REQUEST = 52;
     ProgrammeTele program;
     public static String DATA_KEY = "data_key";
+    public static String DATA_RESULT = "data_result";
     private ProgramDetailView myView;
+    private static Intent intent;
+
+    public static Intent getMyIntent() {
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        program = (ProgrammeTele) getIntent().getExtras().getParcelable(DATA_KEY);
+        intent = getIntent();
+        program = (ProgrammeTele) intent.getExtras().getParcelable(DATA_KEY);
         if (program == null)
             throw new NullPointerException("program null !");
 
@@ -44,6 +54,14 @@ public class ProgramDetailActivity extends Activity {
     }
 
     @Override
+    public void finish() {
+        Log.i("ProgramDetailActivity", "intent program "+program.isFavoris());
+        intent.putExtra(DATA_RESULT, program);
+        super.finish();
+
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -55,7 +73,7 @@ public class ProgramDetailActivity extends Activity {
             return true;
         }
         if (id == android.R.id.home) {
-            NavUtils.navigateUpFromSameTask(this);
+            finish();
             return true;
         }
 

@@ -1,12 +1,15 @@
 package devmobile.projet_tdm1;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -70,11 +73,13 @@ public class ChannelModeActivity extends CommunActivity{
             // the adapter. Also specify this Activity object, which implements
             // the TabListener interface, as the callback (listener) for when
             // this tab is selected.
+
             actionBar.addTab(
                     actionBar.newTab()
-                    		.setIcon(myPagerAdapter.getChaineIcon(i))
+                            .setIcon(myPagerAdapter.getChaineIcon(i))
                             .setText(myPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
+            
         }
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 	}
@@ -83,4 +88,5 @@ public class ChannelModeActivity extends CommunActivity{
     public void OnChaineItemSelected() {
         drawer_layout.closeDrawers();
     }
+
 }

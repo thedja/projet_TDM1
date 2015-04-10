@@ -62,7 +62,7 @@ public class ProgrammeTele implements Parcelable{
         this.heureDebut = in.readInt();
         this.heureFin = in.readInt();
         this.chaine = (Chaine)  in.readParcelable(Chaine.class.getClassLoader());
-//        this.favoris = in.readBoolean();
+        this.favoris =  (boolean) in.readValue(Boolean.class.getClassLoader());
     }
 
     public String getTitre() {
@@ -128,12 +128,10 @@ public class ProgrammeTele implements Parcelable{
 	}
 
     public int getIcon(Resources resources) {
-        Log.i(TAG, "iconId : "+iconId);
         return resources.getIdentifier(iconId, "raw", "devmobile.projet_tdm1");
     }
 
     public int getVideo(Resources resources) {
-        Log.i(TAG, "videoId : "+iconId+" ==> "+resources.getIdentifier(videoId, "raw", "devmobile.projet_tdm1"));
         return resources.getIdentifier(videoId, "raw", "devmobile.projet_tdm1");
     }
 
@@ -172,4 +170,17 @@ public class ProgrammeTele implements Parcelable{
     };
 
 
+    public void copy(ProgrammeTele programmeTele) {
+        this.chaine = programmeTele.chaine;
+        this.thematique = programmeTele.thematique;
+        this.heureDebut = programmeTele.heureDebut;
+        this.heureFin = programmeTele.heureFin;
+        this.descriptif = programmeTele.descriptif;
+        this.videoId = programmeTele.videoId;
+        this.iconId = programmeTele.iconId;
+        this.titre = programmeTele.titre;
+        this.favoris = programmeTele.favoris;
+
+        Log.i("ProgrammeTele", titre + " copy finished");
+    }
 }

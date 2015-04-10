@@ -73,6 +73,11 @@ public class ProgramSimpleAdapter extends RecyclerView.Adapter<ProgramSimpleAdap
         return mSelectedPosition;
     }
 
+    public void selectItem(int position){
+        mSelectedPosition = position;
+        notifyDataSetChanged();
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         ImageView photo;
