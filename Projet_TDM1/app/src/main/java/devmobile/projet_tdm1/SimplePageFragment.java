@@ -20,6 +20,8 @@ public class SimplePageFragment extends android.support.v4.app.Fragment implemen
         ProgramSimpleAdapter.FavorisListener,
         ProgramDetailView.FavorisListener {
 
+    private static final String TAG = "MYTAG_SimplePageFrag";
+
     ArrayList<ProgrammeTele> data;
     public static String DATA_KEY = "data_key";
     public static int REQUEST_CODE = 9992;
@@ -31,7 +33,7 @@ public class SimplePageFragment extends android.support.v4.app.Fragment implemen
         this.data = data;
     }
 
-    public static SimplePageFragment newInstance(ArrayList<ProgrammeTele> data){
+    public static SimplePageFragment newInstance(ArrayList<ProgrammeTele> data) {
 
         SimplePageFragment fragment = new SimplePageFragment(data);
         Bundle bundle = new Bundle();
@@ -82,7 +84,7 @@ public class SimplePageFragment extends android.support.v4.app.Fragment implemen
 
     }
 
-    public void showProgramDetail(ProgrammeTele programme){
+    public void showProgramDetail(ProgrammeTele programme) {
         if (getActivity().getResources().getInteger(R.integer.nbr_panel) == 2) {
 
             ViewGroup parent = (ViewGroup) getView();
@@ -107,15 +109,34 @@ public class SimplePageFragment extends android.support.v4.app.Fragment implemen
     @Override
     public void favorisChanged(boolean isFavoris) {
 
-        if(detail != null)
+        if (detail != null)
             detail.setFavoris(isFavoris);
     }
 
     @Override
     public void favorisDetailChanged(boolean isChecked) {
-        Log.i("ProgramSimpleAdapter", "favorisChanged");
+        Log.i(TAG, "favorisChanged");
         adapter.notifyItemChanged(adapter.getmSelectedPosition());
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        if (savedInstanceState != null && detail!=null) {
+            Log.i(TAG, "detail: "+(detail!=null));
+            Log.i(TAG, "videoView: "+(detail.getMyVideoView()!=null));
+            savedInstanceState.putInt("Position", detail.getMyVideoView().getCurrentPosition());
+            detail.getMyVideoView().pause();
+        }
+    }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (savedInstanceState != null && detail!=null) {
+            // Restore last state for checked position.
+            int position = savedInstanceState.getInt("Position");
+            detail.getMyVideoView().seekTo(position);
+        }
+    }
 }

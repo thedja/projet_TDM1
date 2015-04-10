@@ -16,15 +16,18 @@ public class ProgramDetailActivity extends Activity {
 
     ProgrammeTele program;
     public static String DATA_KEY = "data_key";
+    private ProgramDetailView myView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         program = (ProgrammeTele) getIntent().getExtras().getParcelable(DATA_KEY);
-        if(program == null)
+        if (program == null)
             throw new NullPointerException("program null !");
-        setContentView(new ProgramDetailView(this, program));
+
+        myView = new ProgramDetailView(this, program);
+        setContentView(myView);
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
@@ -51,11 +54,30 @@ public class ProgramDetailActivity extends Activity {
         if (id == R.id.action_settings) {
             return true;
         }
-        if(id == android.R.id.home){
+        if (id == android.R.id.home) {
             NavUtils.navigateUpFromSameTask(this);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        if (savedInstanceState != null) {
+            savedInstanceState.putInt("Position", myView.getMyVideoView().getCurrentPosition());
+            myView.getMyVideoView().pause();
+        }
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState != null) {
+            int position = savedInstanceState.getInt("Position");
+            myView.getMyVideoView().seekTo(position);
+        }
     }
 }

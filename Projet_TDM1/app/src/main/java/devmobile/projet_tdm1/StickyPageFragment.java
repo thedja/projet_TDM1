@@ -23,6 +23,7 @@ public class StickyPageFragment extends android.support.v4.app.Fragment implemen
         ProgramStickyAdapter.FavorisListener,
         ProgramDetailView.FavorisListener{
 
+    private static final String TAG = "MYTAG_StickyPageFrag";
     ArrayList<ProgrammeTele> data;
     private static String DATA_KEY = "data_key";
     ProgramStickyAdapter adapter;
@@ -132,6 +133,29 @@ public class StickyPageFragment extends android.support.v4.app.Fragment implemen
     public void favorisDetailChanged(boolean isChecked) {
         Log.i("ProgramSimpleAdapter", "favorisChanged");
         adapter.notifyAll();
+    }
+
+
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        if (savedInstanceState != null && detail!=null) {
+            Log.i(TAG, "detail: "+(detail!=null));
+            Log.i(TAG, "videoView: "+(detail.getMyVideoView()!=null));
+            savedInstanceState.putInt("Position", detail.getMyVideoView().getCurrentPosition());
+            detail.getMyVideoView().pause();
+        }
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (savedInstanceState != null && detail!=null) {
+            // Restore last state for checked position.
+            int position = savedInstanceState.getInt("Position");
+            detail.getMyVideoView().seekTo(position);
+        }
     }
 
 }

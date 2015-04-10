@@ -6,8 +6,10 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
@@ -23,16 +25,19 @@ import android.widget.VideoView;
 
 import devmobile.projet_tdm1.model.ProgrammeTele;
 
+import static android.view.Gravity.CENTER_VERTICAL;
+
 
 /**
  * TODO: document your custom view class.
  */
 public class ProgramDetailView extends LinearLayout {
 
+    private static final String TAG = "MYTAG_ProgramDetailView";
+
     private VideoView videoView;
     private MediaController mediaController;
     private ProgressDialog progressDialog;
-    private int position;
     private ImageView imgView_snapshot;
     private TextView txtView_title, txtView_thematique, txtView_description, txtView_horaire;
     private ToggleButton favoris;
@@ -41,22 +46,22 @@ public class ProgramDetailView extends LinearLayout {
     public ProgramDetailView(Context context, ProgrammeTele programme) {
         super(context);
         bind(context);
-        init(context,null, 0, programme);
+        init(context, null, 0, programme);
     }
 
     public ProgramDetailView(Context context, AttributeSet attrs, ProgrammeTele programme) {
         super(context, attrs);
         bind(context);
-        init(context,attrs, 0, programme);
+        init(context, attrs, 0, programme);
     }
 
     public ProgramDetailView(Context context, AttributeSet attrs, int defStyle, ProgrammeTele programme) {
         super(context, attrs, defStyle);
         bind(context);
-        init(context,attrs, defStyle, programme);
+        init(context, attrs, defStyle, programme);
     }
 
-    private void init(final Context context,AttributeSet attrs, int defStyle, final ProgrammeTele program) {
+    private void init(final Context context, AttributeSet attrs, int defStyle, final ProgrammeTele program) {
 
         txtView_title.setText(program.getTitre());
         txtView_thematique.setText(program.getThematique());
@@ -69,15 +74,20 @@ public class ProgramDetailView extends LinearLayout {
             @Override
             public void onClick(View v) {
                 program.setFavoris(favoris.isChecked());
-                if(favorisListener != null)
+                if (favorisListener != null)
                     favorisListener.favorisDetailChanged(favoris.isChecked());
-                if(favoris.isChecked())
+                if (favoris.isChecked())
                     NotificationController.askForNotification(context, program);
             }
         });
 
+        if (!program.getVideoId().isEmpty())
+            makeVideo(context, program);
+    }
+
+    private void makeVideo(Context context, ProgrammeTele program) {
         // set the media controller buttons
-        if(mediaController == null){
+        if (mediaController == null) {
             mediaController = new MediaController(context);
         }
 
@@ -88,37 +98,33 @@ public class ProgramDetailView extends LinearLayout {
         progressDialog.setCancelable(true);
         progressDialog.show();
 
-        try{
+        try {
             videoView.setMediaController(mediaController);
             // TODO get the media Uri from program instance
             videoView.setVideoURI(Uri.parse("android.resource://" + context.getPackageName() + "/" + program.getVideo(context.getResources())));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         videoView.requestFocus();
-        videoView.start();
-
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 // close the progress bar
-                progressDialog.dismiss();
-                // play the video from previous attempt
-                videoView.seekTo(position);
+                Log.i(TAG, "video ready !");
+                // wrap the video content
+                videoView.setLayoutParams(
+                        new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT,
+                            Gravity.CENTER_HORIZONTAL| CENTER_VERTICAL));
 
-                if (position == 0) {
-                    videoView.start();
-                } else {
-                    videoView.pause();
-                }
+                progressDialog.dismiss();
             }
         });
 
     }
 
-    private void bind(Context context){
-        LayoutInflater inflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+    private void bind(Context context) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.program_layout, this, true);
         this.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 3f));
 
@@ -137,11 +143,15 @@ public class ProgramDetailView extends LinearLayout {
         favoris.setChecked(isFavoris);
     }
 
-    public void setFavorisListener(FavorisListener favorisListener){
+    public void setFavorisListener(FavorisListener favorisListener) {
         this.favorisListener = favorisListener;
     }
 
-    public interface FavorisListener{
+    public VideoView getMyVideoView() {
+        return videoView;
+    }
+
+    public interface FavorisListener {
         public void favorisDetailChanged(boolean isChecked);
     }
 }

@@ -133,7 +133,7 @@ public class ProgrammeTele implements Parcelable{
     }
 
     public int getVideo(Resources resources) {
-        Log.i(TAG, "videoId : "+iconId);
+        Log.i(TAG, "videoId : "+iconId+" ==> "+resources.getIdentifier(videoId, "raw", "devmobile.projet_tdm1"));
         return resources.getIdentifier(videoId, "raw", "devmobile.projet_tdm1");
     }
 
