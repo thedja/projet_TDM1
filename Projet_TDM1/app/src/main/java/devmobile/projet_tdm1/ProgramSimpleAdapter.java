@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -73,9 +74,14 @@ public class ProgramSimpleAdapter extends RecyclerView.Adapter<ProgramSimpleAdap
         return mSelectedPosition;
     }
 
+    public void selectItem(int position){
+        mSelectedPosition = position;
+        notifyDataSetChanged();
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        ImageView photo;
+        LinearLayout photo;
         TextView thematique;
         TextView horaire;
         TextView titre;
@@ -85,7 +91,7 @@ public class ProgramSimpleAdapter extends RecyclerView.Adapter<ProgramSimpleAdap
         public MyViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            photo = (ImageView) itemView.findViewById(R.id.program_snapshot);
+            photo = (LinearLayout) itemView.findViewById(R.id.program_snapshot);
             thematique = (TextView) itemView.findViewById(R.id.txtView_thematique);
             horaire = (TextView) itemView.findViewById(R.id.txtView_horaire);
             titre = (TextView) itemView.findViewById(R.id.txtView_title);
@@ -95,7 +101,7 @@ public class ProgramSimpleAdapter extends RecyclerView.Adapter<ProgramSimpleAdap
 
         public void bind(final ProgrammeTele current){
 
-            photo.setImageResource(current.getIcon(context.getResources()));
+            photo.setBackgroundResource(current.getIcon(context.getResources()));
             thematique.setText(current.getThematique());
             horaire.setText(current.getHoraire());
             titre.setText(current.getTitre());

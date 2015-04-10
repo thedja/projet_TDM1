@@ -94,8 +94,10 @@ public class MyApplication extends Application {
 
         for(Chaine chaine : chaines){ // pour chaque chaine 'ch'
             for(ProgrammeTele program : programmesParChaine.get(chaine)){ // chaque programme de la chaine 'ch'
-                if(program.isFavoris())
+                if(program.isFavoris()) {
                     programmesFavoris.add(program);
+                    Log.i(TAG, program.getTitre()+" is favoris !");
+                }
             }
         }
     }

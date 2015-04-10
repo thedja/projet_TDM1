@@ -11,7 +11,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class ChannelPagerAdapter extends FragmentPagerAdapter {
 	private static final String TAG = "PRIVATE_TAG_ChannelPagerAdapter";
-    private ArrayList<SimplePageFragment> listPages;
+    ArrayList<SimplePageFragment> listPages;
     private ArrayList<Chaine> chaines;
     private Resources resources;
 

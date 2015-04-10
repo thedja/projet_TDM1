@@ -1,86 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+style="@style/CardViewStyle"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    style="@style/CardViewStyle">
+    android:layout_height="@dimen/prgram_item_height"
+    android:divider="@drawable/abc_list_pressed_holo_dark"
+    android:orientation="horizontal"
+    android:padding="@dimen/program_item_padding">
 
     <LinearLayout
-        android:orientation="horizontal" android:layout_width="match_parent"
-        android:layout_height="@dimen/prgram_item_height"
-        android:divider="@drawable/abc_list_pressed_holo_dark"
-        android:padding="@dimen/program_item_padding">
+        android:id="@+id/program_snapshot"
+        android:layout_width="@dimen/program_item_snapshot_size"
+        android:layout_height="@dimen/program_item_snapshot_size"
+        android:layout_marginRight="@dimen/program_item_snapshot_marginRight"
+        android:orientation="vertical"
+        android:src="@raw/no_image" />
 
-        <ImageView
-            android:layout_width="@dimen/program_item_snapshot_size"
-            android:layout_height="@dimen/program_item_snapshot_size"
-            android:id="@+id/program_snapshot"
-            android:src="@raw/no_image"
-            android:layout_marginRight="@dimen/program_item_snapshot_marginRight"
-            android:adjustViewBounds="true" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-            <RelativeLayout
+            <TextView
+                android:id="@+id/txtView_title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/program_item_title_marginBottom"
+                android:width="0dip"
+                android:text="Match d&apos;UCL : CHE vs MU"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
-                <LinearLayout
-                    android:orientation="horizontal"
+            <TextView
+                android:id="@+id/txtView_thematique"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/program_item_title_marginBottom"
+                android:text="Sport"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/primary_dark_material_light" />
+
+            <TextView
+                android:id="@+id/txtView_description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:width="0dip"
+                android:text="Finale de l&apos;UEFA Champions League de 2008, entre les deux clubs anglais de Londre, CHELSEA et de Manchester, MANCHESTER UNITED, qui se déroulera à Lisbone, Portugal. Première finale entre ces deux grands clubs."
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_weight="3"
+            android:gravity="right">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:gravity="right"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtView_horaire"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginTop="8dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="10h40 - 11h30"
-                        android:id="@+id/txtView_horaire"
-                        android:layout_marginRight="@dimen/program_item_horaire_marginRight" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Sport"
-                        android:id="@+id/txtView_thematique"
-                        android:textColor="@color/primary_dark_material_light" />
-                </LinearLayout>
+                    android:layout_gravity="right"
+                    android:layout_marginBottom="@dimen/program_item_title_marginBottom"
+                    android:layout_marginRight="@dimen/program_item_horaire_marginRight"
+                    android:text="10h40 - 11h30"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <ToggleButton
                     android:id="@+id/favoris"
                     android:layout_width="@dimen/program_item_favoris_size"
                     android:layout_height="@dimen/program_item_favoris_size"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="@dimen/program_item_horaire_marginRight"
                     android:background="@drawable/favoris_selector"
-                    android:textOn=""
-                    android:textOff=""
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:layout_alignParentRight="true"/>
-            </RelativeLayout>
+                    android:textOff=""
+                    android:textOn="" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Match d&apos;UCL : CHE vs MU"
-                android:id="@+id/txtView_title"
-                android:layout_marginBottom="@dimen/program_item_title_marginBottom"
-                android:width="0dip" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Finale de l&apos;UEFA Champions League de 2008, entre les deux clubs anglais de Londre, CHELSEA et de Manchester, MANCHESTER UNITED, qui se déroulera à Lisbone, Portugal. Première finale entre ces deux grands clubs."
-                android:id="@+id/txtView_description"
-                android:width="0dip" />
+            </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
+
+</LinearLayout>
 </android.support.v7.widget.CardView>

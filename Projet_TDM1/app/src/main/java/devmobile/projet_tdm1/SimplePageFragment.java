@@ -24,9 +24,10 @@ public class SimplePageFragment extends android.support.v4.app.Fragment implemen
 
     ArrayList<ProgrammeTele> data;
     public static String DATA_KEY = "data_key";
-    public static int REQUEST_CODE = 9992;
     ProgramSimpleAdapter adapter;
     ProgramDetailView detail;
+    private int detail_index = -1;
+    Intent detailIntent;
 
     public SimplePageFragment(ArrayList<ProgrammeTele> data) {
 
@@ -81,6 +82,7 @@ public class SimplePageFragment extends android.support.v4.app.Fragment implemen
     public void itemClicked(View view, int position) {
 
         showProgramDetail(data.get(position));
+        detail_index = position;
 
     }
 
@@ -100,9 +102,35 @@ public class SimplePageFragment extends android.support.v4.app.Fragment implemen
         } else {
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
-            Intent detailIntent = new Intent(getActivity(), ProgramDetailActivity.class);
+            Log.i(TAG, "startActivityForResult");
+            detailIntent = new Intent(getActivity(), ProgramDetailActivity.class);
             detailIntent.putExtra(ProgramDetailActivity.DATA_KEY, programme);
-            startActivityForResult(detailIntent, REQUEST_CODE);
+            getActivity().startActivityForResult(detailIntent, ProgramDetailActivity.DATA_REQUEST);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(detailIntent != null) {
+            ProgrammeTele programmeTele = (ProgrammeTele) ProgramDetailActivity.getMyIntent().getExtras().get(ProgramDetailActivity.DATA_RESULT);
+            data.get(detail_index).copy(programmeTele);
+            adapter.selectItem(-1);
+            detailIntent = null;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
+        super.onActivityResult(requestCode, resultCode, resultData);
+        Log.i(TAG, "onActivityResult ");
+        if(requestCode == ProgramDetailActivity.DATA_REQUEST){
+            if(resultCode == ProgramDetailActivity.RESULT_OK) {
+                Bundle bundle = resultData.getExtras();
+                ProgrammeTele programmeTele = bundle.getParcelable(ProgramDetailActivity.DATA_KEY);
+                data.get(detail_index).copy(programmeTele);
+                adapter.notifyItemChanged(detail_index);
+            }
         }
     }
 
