@@ -41,6 +41,7 @@ public class ProgramDetailActivity extends Activity {
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
@@ -55,7 +56,6 @@ public class ProgramDetailActivity extends Activity {
 
     @Override
     public void finish() {
-        Log.i("ProgramDetailActivity", "intent program "+program.isFavoris());
         intent.putExtra(DATA_RESULT, program);
         super.finish();
 

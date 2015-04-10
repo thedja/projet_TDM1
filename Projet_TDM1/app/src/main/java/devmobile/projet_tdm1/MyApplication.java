@@ -40,7 +40,6 @@ public class MyApplication extends Application {
 
         for(Chaine chaine : chaines){ // pour chaque chaine 'ch'
             for(ProgrammeTele program : programmesParChaine.get(chaine)){ // chaque programme de la chaine 'ch'
-                Log.i(TAG, "program: " + program.getTrancheHoraire() +" => "+ program.getHeureDebut()+"-"+program.getHeureFin());
                 switch (program.getTrancheHoraire()){
                     case "Matinee":
                         matinee.add(program);
@@ -52,11 +51,7 @@ public class MyApplication extends Application {
                         soiree.add(program);
                         break;
                     case "Nuit":
-                        Log.i(TAG, "case Nuit : "+program.getHeureDebut()+" / "+program.getHeureFin());
                         nuit.add(program);
-                        break;
-                    default:
-                        Log.i(TAG, "default: "+program.getTrancheHoraire()+" ==> "+program.getHeureDebut()+" / "+program.getHeureFin());
                         break;
                 }
             }
@@ -96,7 +91,6 @@ public class MyApplication extends Application {
             for(ProgrammeTele program : programmesParChaine.get(chaine)){ // chaque programme de la chaine 'ch'
                 if(program.isFavoris()) {
                     programmesFavoris.add(program);
-                    Log.i(TAG, program.getTitre()+" is favoris !");
                 }
             }
         }

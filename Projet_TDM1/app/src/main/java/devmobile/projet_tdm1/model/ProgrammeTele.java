@@ -34,7 +34,6 @@ public class ProgrammeTele implements Parcelable{
         this.favoris = favoris;
 
 		if(heureDebut>=0 && heureDebut<6){
-            Log.i(TAG, "=============> yaaw nuit");
             this.trancheHoraire = "Nuit";
         }else if(heureDebut>=6 && heureDebut<13){
 			this.trancheHoraire = "Matinee";
@@ -183,6 +182,5 @@ public class ProgrammeTele implements Parcelable{
         this.titre = programmeTele.titre;
         this.favoris = programmeTele.favoris;
 
-        Log.i("ProgrammeTele", titre + " copy finished");
     }
 }

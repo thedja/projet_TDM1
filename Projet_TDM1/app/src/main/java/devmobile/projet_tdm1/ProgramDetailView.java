@@ -103,7 +103,6 @@ public class ProgramDetailView extends LinearLayout {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 // close the progress bar
-                Log.i(TAG, "video ready !");
                 // wrap the video content
                 LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
                 layoutParams.gravity=Gravity.CENTER;

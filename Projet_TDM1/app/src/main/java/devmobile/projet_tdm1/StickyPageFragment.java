@@ -140,7 +140,6 @@ public class StickyPageFragment extends android.support.v4.app.Fragment implemen
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
         super.onActivityResult(requestCode, resultCode, resultData);
-        Log.i(TAG, "onActivityResult ");
         if(requestCode == ProgramDetailActivity.DATA_REQUEST){
             if(resultCode == ProgramDetailActivity.RESULT_OK) {
                 Bundle bundle = resultData.getExtras();
@@ -161,16 +160,13 @@ public class StickyPageFragment extends android.support.v4.app.Fragment implemen
 
     @Override
     public void favorisDetailChanged(boolean isChecked) {
-        Log.i("ProgramSimpleAdapter", "favorisChanged");
-        adapter.notifyAll();
+        adapter.notifyItemChanged(adapter.getmSelectedPosition());
     }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         if (savedInstanceState != null && detail!=null) {
-            Log.i(TAG, "detail: "+(detail!=null));
-            Log.i(TAG, "videoView: "+(detail.getMyVideoView()!=null));
             savedInstanceState.putInt("Position", detail.getMyVideoView().getCurrentPosition());
             detail.getMyVideoView().pause();
         }

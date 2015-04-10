@@ -69,7 +69,6 @@ public class JSONController {
                 program = new ProgrammeTele(chaine, post.getString("thematique"), post.getInt("heureDebut"), post.getInt("heureFin"),
                         post.getString("descriptif"), post.getString("videoId"), post.getString("iconId"), post.getString("titre"), post.getBoolean("isFavoris"));
                 programmes.add(program);
-                Log.i(TAG, program.getTitre()+" isFavoris ==> "+program.isFavoris());
             }
         } catch (JSONException e) {
             e.printStackTrace();
