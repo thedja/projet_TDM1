@@ -25,6 +25,7 @@ public class TrancheHoraireModeActivity extends CommunActivity{
 
 		// Set up the action bar.
         final ActionBar actionBar = getActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 

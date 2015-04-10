@@ -34,6 +34,8 @@ public class ChannelModeActivity extends CommunActivity{
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
+
+        actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         drawerToggle = new ActionBarDrawerToggle(this, drawer_layout, R.drawable.toggle, R.string.open, R.string.close);
