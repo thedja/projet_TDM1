@@ -9,23 +9,15 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.widget.VideoView;
-
 import devmobile.projet_tdm1.model.ProgrammeTele;
-
-import static android.view.Gravity.CENTER_VERTICAL;
 
 
 /**
@@ -113,9 +105,9 @@ public class ProgramDetailView extends LinearLayout {
                 // close the progress bar
                 Log.i(TAG, "video ready !");
                 // wrap the video content
-                videoView.setLayoutParams(
-                        new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT,
-                            Gravity.CENTER_HORIZONTAL| CENTER_VERTICAL));
+                LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+                layoutParams.gravity=Gravity.CENTER;
+                videoView.setLayoutParams(layoutParams);
 
                 progressDialog.dismiss();
             }
