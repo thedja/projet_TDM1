@@ -10,13 +10,13 @@
         android:divider="@drawable/abc_list_pressed_holo_dark"
         android:padding="@dimen/program_item_padding">
 
-        <ImageView
+        <LinearLayout
             android:layout_width="@dimen/program_item_snapshot_size"
             android:layout_height="@dimen/program_item_snapshot_size"
             android:id="@+id/program_snapshot"
             android:src="@mipmap/ic_launcher"
             android:layout_marginRight="@dimen/program_item_snapshot_marginRight"
-            android:adjustViewBounds="true" />
+            android:orientation="vertical" />
 
         <LinearLayout
             android:orientation="vertical"

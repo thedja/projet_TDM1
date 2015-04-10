@@ -76,11 +76,17 @@ public class ChannelModeActivity extends CommunActivity{
 
             actionBar.addTab(
                     actionBar.newTab()
-                            .setIcon(myPagerAdapter.getChaineIcon(i))
+                            //.setIcon(myPagerAdapter.getChaineIcon(i))
                             .setText(myPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
-            
+
+
         }
+//        actionBar.addTab(actionBar.newTab().setText("new tab").setTabListener(this));
+//        actionBar.addTab(actionBar.newTab().setText("new tab").setTabListener(this));
+//        actionBar.addTab(actionBar.newTab().setText("new tab").setTabListener(this));
+//        actionBar.addTab(actionBar.newTab().setText("new tab").setTabListener(this));
+
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 	}
 

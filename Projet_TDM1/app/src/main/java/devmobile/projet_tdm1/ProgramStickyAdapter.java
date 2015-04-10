@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -96,7 +97,7 @@ public class ProgramStickyAdapter extends RecyclerArrayAdapter<ProgrammeTele, Pr
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        ImageView photo;
+        LinearLayout photo;
         TextView thematique;
         TextView horaire;
         TextView titre;
@@ -106,7 +107,7 @@ public class ProgramStickyAdapter extends RecyclerArrayAdapter<ProgrammeTele, Pr
         public MyViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            photo = (ImageView) itemView.findViewById(R.id.program_snapshot);
+            photo = (LinearLayout) itemView.findViewById(R.id.program_snapshot);
             thematique = (TextView) itemView.findViewById(R.id.txtView_thematique);
             horaire = (TextView) itemView.findViewById(R.id.txtView_horaire);
             titre = (TextView) itemView.findViewById(R.id.txtView_title);
@@ -115,7 +116,7 @@ public class ProgramStickyAdapter extends RecyclerArrayAdapter<ProgrammeTele, Pr
         }
 
         public void bind(final ProgrammeTele current){
-            photo.setImageResource(current.getIcon(context.getResources()));
+            photo.setBackgroundResource(current.getIcon(context.getResources()));
             thematique.setText(current.getThematique());
             horaire.setText(current.getHoraire());
             titre.setText(current.getTitre());

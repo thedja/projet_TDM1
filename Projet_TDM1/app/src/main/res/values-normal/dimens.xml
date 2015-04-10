@@ -17,4 +17,7 @@
     <dimen name="program_detail_favoris_size">36dp</dimen>
     <dimen name="program_detail_description_marginTop">16dp</dimen>
     <dimen name="program_detail_video_marginTop">16dp</dimen>
+
+    <!--nav_bar -->
+    <dimen name="nav_bar_image_width">0dp</dimen>
 </resources>
