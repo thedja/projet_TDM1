@@ -15,6 +15,11 @@ public class ItemNavBarInfo implements Parcelable{
         this.text = text;
     }
 
+    public ItemNavBarInfo(Parcel in) {
+        this.icon = in.readInt();
+        this.text = in.readInt();
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -23,5 +28,18 @@ public class ItemNavBarInfo implements Parcelable{
     @Override
     public void writeToParcel(Parcel dest, int flags) {
 
+        dest.writeInt(this.icon);
+        dest.writeInt(this.text);
     }
+
+    public static final Creator<ItemNavBarInfo> CREATOR = new Creator<ItemNavBarInfo>() {
+
+        public ItemNavBarInfo createFromParcel(Parcel in) {
+            return new ItemNavBarInfo(in);
+        }
+
+        public ItemNavBarInfo[] newArray(int size) {
+            return new ItemNavBarInfo[size];
+        }
+    };
 }
